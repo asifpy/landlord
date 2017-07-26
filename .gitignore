@@ -1,5 +1,6 @@
 .DS_Store
 *.pyc
 __pycache__
-backend/landlord/landlord/media
-backend/landlord/landlord/media/*
+backend/landlord/db.sqlite3
+backend/landlord/media
+backend/landlord/media/*
