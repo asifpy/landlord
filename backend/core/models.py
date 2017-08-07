@@ -5,10 +5,8 @@ from django.db.models import (
     ForeignKey,
     CharField,
     TextField,
-    IntegerField,
     BooleanField,
     DateField,
-    FileField,
     EmailField
 )
 from django.contrib.auth.models import User
@@ -21,6 +19,7 @@ class Landlord(Auditable):
 
     name = CharField(max_length=100)
     email = EmailField()
+    mobile = CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -63,7 +62,20 @@ class Tenant(Auditable):
 class UserProfile(Model):
 
     user = OneToOneField(User, on_delete=CASCADE, related_name='profile')
-    tenant = OneToOneField(Tenant, on_delete=CASCADE, related_name='profile')
+    tenant = OneToOneField(
+        Tenant,
+        on_delete=CASCADE,
+        related_name='profile',
+        blank=True,
+        null=True
+    )
+    landlord = OneToOneField(
+        Landlord,
+        on_delete=CASCADE,
+        related_name='profile',
+        blank=True,
+        null=True
+    )
 
 
 class Contract(Auditable):

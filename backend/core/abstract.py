@@ -13,12 +13,12 @@ class Auditable(Model):
         User,
         blank=True,
         null=True,
-        related_name='%(class)ss_creators')
+        related_name='created_%(class)s')
     updated_by = ForeignKey(
         User,
         blank=True,
         null=True,
-        related_name='%(class)ss_updaters')
+        related_name='updated_%(class)s')
 
     class Meta:
         abstract = True
