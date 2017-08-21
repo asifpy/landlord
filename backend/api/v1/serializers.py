@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
 
 from core.models import (
     Landlord,
     UserProfile,
-    Tenant
+    Tenant,
+    Building
 )
 
 
@@ -42,6 +44,7 @@ class ProfileLandlordSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # create user
         user_data = validated_data.pop('user')
+        user_data['password'] = make_password(user_data['password'])
         user = User.objects.create(**user_data)
 
         landlord_data = validated_data.pop('landlord')
@@ -53,3 +56,10 @@ class ProfileLandlordSerializer(serializers.ModelSerializer):
         )
 
         return profile
+
+
+class BuildingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Building
+        fields = ('name', 'number')
