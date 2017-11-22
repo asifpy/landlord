@@ -23,7 +23,6 @@ class BuildingViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing building details.
     """
-    queryset = Building.objects.all()
     serializer_class = BuildingSerializer
     permission_classes = (IsAuthenticated,)
 
