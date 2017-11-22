@@ -1,5 +1,8 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import exceptions
 
 from core.models import UserProfile, Building
 from api.v1.serializers import (
@@ -27,7 +30,14 @@ class BuildingViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Returns all the buildings for logged in landlord"""
 
-        landlord = self.request.user.profile.landlord
+        user = self.request.user
+        profile = get_object_or_404(UserProfile, user=user)
+        landlord = profile.landlord
+
+        if not landlord:
+            msg = "No landlord assigned for the user {}".format(user)
+            raise exceptions.NotFound(detail=msg)
+
         return landlord.buildings.all()
 
     def perform_create(self, serializer):
