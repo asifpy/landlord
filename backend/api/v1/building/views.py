@@ -5,18 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from core.models import UserProfile
 from .permissions import IsLandlordPermission
-from .serializers import (
-    ProfileLandlordSerializer,
-    BuildingSerializer
-)
-
-
-class LandlordProfileViewSet(viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing landlord details.
-    """
-    queryset = UserProfile.objects.all()
-    serializer_class = ProfileLandlordSerializer
+from .serializers import BuildingSerializer
 
 
 class BuildingViewSet(viewsets.ModelViewSet):

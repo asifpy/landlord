@@ -1,14 +1,9 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+
 from rest_framework import serializers
 
-
-from core.models import (
-    Landlord,
-    UserProfile,
-    Tenant,
-    Building
-)
+from core.models import Landlord, UserProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,13 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'password', 'email')
         extra_kwargs = {'password': {'write_only': True}}
-
-
-class TenantSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Tenant
-        fields = ('name', 'mobile')
 
 
 class LandlordSerializer(serializers.ModelSerializer):
@@ -42,24 +30,21 @@ class ProfileLandlordSerializer(serializers.ModelSerializer):
         fields = ('user', 'landlord')
 
     def create(self, validated_data):
+        """Creates user, landlord and profile"""
+
         # create user
         user_data = validated_data.pop('user')
         user_data['password'] = make_password(user_data['password'])
         user = User.objects.create(**user_data)
 
+        # create landlord
         landlord_data = validated_data.pop('landlord')
         landlord = Landlord.objects.create(**landlord_data)
 
+        # create profile for the landlord
         profile = UserProfile.objects.create(
             user=user,
             landlord=landlord
         )
 
         return profile
-
-
-class BuildingSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Building
-        fields = ('name', 'number')

@@ -1,10 +1,6 @@
-from rest_framework import routers
+from django.conf.urls import url, include
 
-from api.v1.views import LandlordProfileViewSet, BuildingViewSet
-
-router = routers.DefaultRouter()
-router.register(r'landlordprofiles', LandlordProfileViewSet)
-router.register(r'buildings', BuildingViewSet, base_name="buildings")
-
-urlpatterns = []
-urlpatterns += router.urls
+urlpatterns = [
+    url(r'^buildings/', include('api.v1.building.urls')),
+    url(r'^landlordprofiles/', include('api.v1.profile.urls'))
+]
