@@ -14,10 +14,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class LandlordSerializer(serializers.ModelSerializer):
+    buildings = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='building-detail'
+    )
 
     class Meta:
         model = Landlord
-        fields = ('name', 'mobile')
+        fields = ('name', 'mobile', 'buildings')
 
 
 class ProfileLandlordSerializer(serializers.ModelSerializer):
