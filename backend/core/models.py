@@ -54,6 +54,7 @@ class Tenant(Auditable):
     email = EmailField()
     mobile = CharField(max_length=20)
     is_active = BooleanField(default=True)
+    apartment = ForeignKey(Apartment, related_name='tenants')
 
     def __str__(self):
         return self.name
@@ -81,7 +82,7 @@ class UserProfile(Model):
 class Contract(Auditable):
 
     apartment = ForeignKey(Apartment, related_name='apartment_contracts')
-    tenant = ForeignKey(Apartment, related_name='tenant_contracts')
+    tenant = ForeignKey(Tenant, related_name='tenant_contracts')
     start_date = DateField()
     end_date = DateField()
     remarks = TextField()

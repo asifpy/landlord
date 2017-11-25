@@ -26,7 +26,3 @@ class BuildingViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Create new building with landlord"""
         serializer.save(owner=self.request.user.profile.landlord)
-
-    def perform_update(self, serializer):
-        """Update the building owner as logged in landlord"""
-        serializer.save(owner=self.request.user.profile.landlord)
