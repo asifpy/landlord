@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
-from core.models import Building, Apartment
+from core.models import Building
 
 # http://www.django-rest-framework.org/api-guide/relations/#custom-hyperlinked-fields
 

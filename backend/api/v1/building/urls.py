@@ -1,17 +1,14 @@
-from django.conf.urls import url, include
 from rest_framework import routers
 
-from .views import BuildingViewSet
+from .views import BuildingViewSet, BuildingApartmentViewSet
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 router.register(r'', BuildingViewSet, base_name="building")
+router.register(
+    r'(?P<building_pk>\d+)/apartments',
+    BuildingApartmentViewSet,
+    base_name="building-apartment"
+)
 
 urlpatterns = []
 urlpatterns += router.urls
-
-urlpatterns += [
-    url(
-        r'^(?P<building_pk>\d+)/apartments/',
-        include('api.v1.building.apartment.urls')
-    ),
-]

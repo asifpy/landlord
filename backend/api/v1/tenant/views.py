@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import detail_route
 
 from core.models import Apartment, Building
 from api.v1.building.permissions import IsLandlordPermission
@@ -29,3 +30,10 @@ class ApartmentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Create new building with landlord"""
         serializer.save(building=self.get_building)
+
+    @detail_route(methods=['post'])
+    def set_status(self, request, pk=None, building_pk=None):
+        """Sets apartment as vacant"""
+        apartment = self.get_object()
+        apartment.set_status()
+        return Response({'status': 'Apartment status updated'})
