@@ -1,9 +1,9 @@
 from rest_framework import routers
 
-from .views import ApartmentViewSet
+from .views import TenantViewSet
 
 router = routers.DefaultRouter()
-router.register(r'', ApartmentViewSet, base_name="building-apartment-tenant")
+router.register(r'', TenantViewSet, base_name="tenant")
 
 urlpatterns = []
 urlpatterns += router.urls

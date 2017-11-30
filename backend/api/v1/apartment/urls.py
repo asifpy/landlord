@@ -1,16 +1,14 @@
 from rest_framework import routers
 
-from .views import ApartmentViewSet
+from .views import ApartmentViewSet, ApartmentTenantViewset
 
 router = routers.DefaultRouter()
 router.register(r'', ApartmentViewSet, base_name="apartment")
+router.register(
+    r'(?P<apartment_pk>\d+)/tenants',
+    ApartmentTenantViewset,
+    base_name="apartment-tenant"
+)
 
 urlpatterns = []
 urlpatterns += router.urls
-
-# urlpatterns += [
-#     url(
-#         r'^(?P<apartment_pk>\d+)/tenants/',
-#         include('api.v1.building.apartment.tenant.urls')
-#     ),
-# ]

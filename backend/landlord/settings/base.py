@@ -117,7 +117,7 @@ STATIC_URL = '/static/'
 # refresh near-expiration tokens
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=60),
     'JWT_ALLOW_REFRESH': True,
 }
 

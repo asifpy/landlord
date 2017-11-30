@@ -1,39 +1,34 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework import viewsets
+from rest_framework.decorators import list_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import detail_route
 
-from core.models import Apartment, Building
+from core.models import UserProfile, Tenant
 from api.v1.building.permissions import IsLandlordPermission
-from .serializers import ApartmentSerializer
+from .serializers import TenantSerializer
 
 
-class ApartmentViewSet(viewsets.ModelViewSet):
+class TenantViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing and editing apartment details.
+    A simple ViewSet for viewing and editing tenant details.
     """
-    serializer_class = ApartmentSerializer
+    serializer_class = TenantSerializer
     permission_classes = (IsAuthenticated, IsLandlordPermission)
 
-    @property
-    def get_building(self):
-        """Return building instance"""
-        return Building.objects.get(pk=self.kwargs.get('building_pk'))
-
     def get_queryset(self):
-        """Returns all the apartments for the given building"""
+        """Returns all the tenants for logged in landlord"""
 
-        building_id = self.kwargs.get('building_pk')
-        apartments = Apartment.objects.filter(building__id=building_id)
-        return apartments
+        user = self.request.user
+        profile = get_object_or_404(UserProfile, user=user)
+        landlord = profile.landlord
+        return Tenant.objects.filter(apartment__building__owner=landlord)
 
-    def perform_create(self, serializer):
-        """Create new building with landlord"""
-        serializer.save(building=self.get_building)
+    @list_route(methods=['get'])
+    def active(self, request):
+        """Returns all the active tenants"""
 
-    @detail_route(methods=['post'])
-    def set_status(self, request, pk=None, building_pk=None):
-        """Sets apartment as vacant"""
-        apartment = self.get_object()
-        apartment.set_status()
-        return Response({'status': 'Apartment status updated'})
+        active_tenants = self.get_queryset().filter(is_active=True)
+        serializer = self.get_serializer(active_tenants, many=True)
+        return Response(serializer.data)
