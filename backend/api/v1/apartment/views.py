@@ -57,7 +57,6 @@ class ApartmentTenantViewset(viewsets.ModelViewSet):
         """Create new tenant for the given apartment"""
 
         apartment = self.get_apartment
-        serializer.is_active = True
         serializer.save(apartment=apartment)
 
         apartment.is_vacant = False

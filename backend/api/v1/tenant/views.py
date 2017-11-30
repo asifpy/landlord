@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
-from rest_framework.decorators import list_route
+from rest_framework.decorators import list_route, detail_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
@@ -32,3 +32,16 @@ class TenantViewSet(viewsets.ModelViewSet):
         active_tenants = self.get_queryset().filter(is_active=True)
         serializer = self.get_serializer(active_tenants, many=True)
         return Response(serializer.data)
+
+    @detail_route(methods=['patch'])
+    def set_inactive(self, request):
+        """Set tenant as in-active, update apartment as vacant"""
+
+        tenant = self.get_object()
+        tenant.is_active = False
+        tenant.save()
+
+        apartment = tenant.apartment
+        apartment.is_vacant = True
+        apartment.save()
+        Response({'detail': "Tenant has been updated as in-active"})
