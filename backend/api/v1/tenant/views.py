@@ -34,7 +34,7 @@ class TenantViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @detail_route(methods=['patch'])
-    def set_inactive(self, request):
+    def set_inactive(self, request, pk=None):
         """Set tenant as in-active, update apartment as vacant"""
 
         tenant = self.get_object()
