@@ -4,18 +4,22 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { BuildingModule } from './building/building.module'
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { BuildingModule } from './building/building.module';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    //NavbarComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     NgbModule.forRoot(),
 
+    CoreModule,
     BuildingModule,
   ],
   providers: [],
