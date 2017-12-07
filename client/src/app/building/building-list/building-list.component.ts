@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-building',
+  selector: 'landlord-building-card',
   templateUrl: './building-list.component.html',
   styleUrls: ['./building-list.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -9,6 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class BuildingListComponent implements OnInit {
 
   constructor() { }
+
+  @Input() buildings;
 
   ngOnInit() {
   }

@@ -1,0 +1,64 @@
+
+        <header>
+            <h3>
+                <span class="glyphicon glyphicon-user"></span>
+                {{ title }}
+            </h3>
+        </header>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                {{displayViewEnum.Card}} - {{displayView}}
+                <a (click)="changeDisplayView(displayViewEnum.Card)" [class.active]="displayView === displayViewEnum.Card">
+                    <span class="glyphicon glyphicon-th-large"></span> Card View
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                {{displayViewEnum.Grid}} - {{displayView}}
+                <a (click)="changeDisplayView(displayViewEnum.Grid)" [class.active]="displayView === displayViewEnum.Grid">
+                    <span class="glyphicon glyphicon-align-justify"></span> List View
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                {{displayViewEnum.Map}} - {{displayView}}
+                <a (click)="changeDisplayView(displayViewEnum.Map)" [class.active]="displayView === displayViewEnum.Map">
+                    <span class="glyphicon glyphicon-map-marker"></span> Map View
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a routerLink="/buildings/create/">
+                    <span class="glyphicon glyphicon-plus"></span> New Building
+                </a>
+            </div>
+        </div>
+
+        <br/>
+
+        <landlord-building-card 
+          [buildings]="buildings" 
+          [hidden]="displayView !== displayViewEnum.Card"></landlord-building-card>
+    
+        <!-- <cm-customers-grid 
+          [customers]="filteredCustomers" 
+          [hidden]="displayMode !== displayViewEnum.Grid"></cm-customers-grid>
+
+        <cm-map *ngIf="filteredCustomers.length" 
+            [zoom]="2" 
+            [enabled]="displayMode === displayViewEnum.Map" 
+            [hidden]="displayMode !== displayViewEnum.Map">
+          <cm-map-point 
+            *ngFor="let customer of filteredCustomers" 
+            [latitude]="customer.latitude" 
+            [longitude]="customer.longitude"
+            [markerText]="'<h3>' + customer.firstName + ' ' + customer.lastName + '</a></h3>' + customer.city + ', ' + customer.state.name"></cm-map-point>
+        </cm-map>
+
+        <cm-pagination
+            [totalItems]="totalRecords" 
+            [pageSize]="pageSize" 
+            (pageChanged)="pageChanged($event)"></cm-pagination> -->
+          
+

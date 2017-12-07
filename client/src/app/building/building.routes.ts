@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
 
-import { BuildingListComponent } from './building-list/building-list.component';
 import { BuildingDetailComponent } from './building-detail/building-detail.component';
+import { BuildingComponent } from './building.component';
 
 
 export const BuildingAppRoutes: Routes = [
-	{ path: '', component: BuildingListComponent },
+	{ path: '', component: BuildingComponent },
 	{ path: 'detail', component: BuildingDetailComponent }
 ];
