@@ -26,8 +26,20 @@ export class BuildingComponent implements OnInit {
 			},
 			{
 				'name': 'Building 2',
+				'number': '7783-1'
+			},
+			{
+				'name': 'Building 3',
+				'number': '2753-2'
+			},
+			{
+				'name': 'Building 4',
 				'number': '6783-1'
-			}
+			},
+			{
+				'name': 'Building 5',
+				'number': '9933-1'
+			},
 		]
 		
 	}

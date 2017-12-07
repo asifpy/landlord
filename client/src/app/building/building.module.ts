@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 /* building imports */
-import { BuildingListComponent } from './building-list/building-list.component';
+import { BuildingCardComponent } from './building-card/building-card.component';
 import { BuildingDetailComponent } from './building-detail/building-detail.component';
 import { BuildingComponent } from './building.component';
 import { BuildingAppRoutes } from './building.routes';
@@ -16,7 +16,7 @@ import { BuildingAppRoutes } from './building.routes';
     CommonModule
   ],
   declarations: [
-    BuildingListComponent,
+    BuildingCardComponent,
     BuildingDetailComponent,
     BuildingComponent
   ],

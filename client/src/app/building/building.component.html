@@ -8,21 +8,18 @@
         <br />
         <div class="row">
             <div class="col-md-3">
-                {{displayViewEnum.Card}} - {{displayView}}
                 <a (click)="changeDisplayView(displayViewEnum.Card)" [class.active]="displayView === displayViewEnum.Card">
                     <span class="glyphicon glyphicon-th-large"></span> Card View
                 </a>
             </div>
 
             <div class="col-md-3">
-                {{displayViewEnum.Grid}} - {{displayView}}
                 <a (click)="changeDisplayView(displayViewEnum.Grid)" [class.active]="displayView === displayViewEnum.Grid">
                     <span class="glyphicon glyphicon-align-justify"></span> List View
                 </a>
             </div>
 
             <div class="col-md-3">
-                {{displayViewEnum.Map}} - {{displayView}}
                 <a (click)="changeDisplayView(displayViewEnum.Map)" [class.active]="displayView === displayViewEnum.Map">
                     <span class="glyphicon glyphicon-map-marker"></span> Map View
                 </a>

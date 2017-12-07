@@ -2,11 +2,11 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
   selector: 'landlord-building-card',
-  templateUrl: './building-list.component.html',
-  styleUrls: ['./building-list.component.css'],
+  templateUrl: './building-card.component.html',
+  styleUrls: ['./building-card.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class BuildingListComponent implements OnInit {
+export class BuildingCardComponent implements OnInit {
 
   constructor() { }
 
