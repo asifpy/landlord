@@ -1,0 +1,18 @@
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let building of buildings;">
+            <td>{{building.name}}</td>
+            <td>{{building.number}}</td>
+        </tr>
+        <tr *ngIf="!buildings.length">
+            <td>&nbsp;</td>
+            <td colspan="7">No Records Found</td>
+        </tr>
+    </tbody>
+</table>

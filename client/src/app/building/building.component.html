@@ -38,11 +38,11 @@
           [buildings]="buildings" 
           [hidden]="displayView !== displayViewEnum.Card"></landlord-building-card>
     
-        <!-- <cm-customers-grid 
-          [customers]="filteredCustomers" 
-          [hidden]="displayMode !== displayViewEnum.Grid"></cm-customers-grid>
+        <landlord-building-list 
+          [buildings]="buildings" 
+          [hidden]="displayView !== displayViewEnum.Grid"></landlord-building-list>
 
-        <cm-map *ngIf="filteredCustomers.length" 
+        <!-- <cm-map *ngIf="filteredCustomers.length" 
             [zoom]="2" 
             [enabled]="displayMode === displayViewEnum.Map" 
             [hidden]="displayMode !== displayViewEnum.Map">

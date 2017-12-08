@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 /* building imports */
 import { BuildingCardComponent } from './building-card/building-card.component';
 import { BuildingDetailComponent } from './building-detail/building-detail.component';
+import { BuildingListComponent } from './building-list/building-list.component';
 import { BuildingComponent } from './building.component';
 import { BuildingAppRoutes } from './building.routes';
 
@@ -18,7 +19,8 @@ import { BuildingAppRoutes } from './building.routes';
   declarations: [
     BuildingCardComponent,
     BuildingDetailComponent,
-    BuildingComponent
+    BuildingListComponent,
+    BuildingComponent,
   ],
   providers: []
 })
