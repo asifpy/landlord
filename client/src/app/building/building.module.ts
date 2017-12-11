@@ -9,11 +9,13 @@ import { BuildingDetailComponent } from './building-detail/building-detail.compo
 import { BuildingListComponent } from './building-list/building-list.component';
 import { BuildingComponent } from './building.component';
 import { BuildingAppRoutes } from './building.routes';
+import { BuildingApartmentComponent } from './building-detail/building-apartment/building-apartment.component';
+import { BuildingOverviewComponent } from './building-detail/building-overview/building-overview.component';
 
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(BuildingAppRoutes),
+    RouterModule.forChild(BuildingAppRoutes),
     CommonModule
   ],
   declarations: [
@@ -21,6 +23,8 @@ import { BuildingAppRoutes } from './building.routes';
     BuildingDetailComponent,
     BuildingListComponent,
     BuildingComponent,
+    BuildingApartmentComponent,
+    BuildingOverviewComponent,
   ],
   providers: []
 })

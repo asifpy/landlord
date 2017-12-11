@@ -1,0 +1,19 @@
+<h3>Apartments</h3>
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Is Vacant</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let apartment of apartments;">
+            <td>{{apartment.number}}</td>
+            <td>{{apartment.is_vacant}}</td>
+        </tr>
+        <tr *ngIf="!apartments.length">
+            <td>&nbsp;</td>
+            <td colspan="2">No Records Found</td>
+        </tr>
+    </tbody>
+</table>

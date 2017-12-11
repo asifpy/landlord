@@ -1,3 +1,20 @@
-<p>
-  building detail works!
-</p>
+<div class="row">
+	<div class="col-md-3">
+		<a class="btn btn-warning btn-sm" routerLink="overview" routerLinkActive="active">
+			<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;Building Details
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a class="btn btn-warning btn-sm" routerLink="apartments" routerLinkActive="active">
+			<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Building Apartments
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a class="btn btn-warning btn-sm" routerLink="/" routerLinkActive="active">
+			<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;View all buildings
+		</a>
+	</div>
+</div>
+<br/>
+<router-outlet></router-outlet>
+

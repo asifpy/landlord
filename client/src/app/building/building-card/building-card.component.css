@@ -5,7 +5,7 @@
 .card {
     background-color:#fff;
     border: 1px solid #d4d4d4;
-    height:120px;
+    height:150px;
     margin-bottom: 20px;
     position: relative;
 }
@@ -42,7 +42,7 @@
 }
 
 .card-image {
-    height:50px;width:50px;margin-top:10px;
+    height:80px;width:60px;margin-top:10px;
 }
 
 .white {

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
+import { AppRoutes } from './app.routes';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { BuildingModule } from './building/building.module';
 import { CoreModule } from './core/core.module';
@@ -16,7 +17,7 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    RouterModule,
+    RouterModule.forRoot(AppRoutes),
     NgbModule.forRoot(),
 
     CoreModule,
