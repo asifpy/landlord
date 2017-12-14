@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { BUILDINGS } from '..//..//sample.data';
+import { BuildingService } from '../../../core/services/building.service';
+import { IApartment } from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-building-apartment',
@@ -10,13 +11,14 @@ import { BUILDINGS } from '..//..//sample.data';
 })
 export class BuildingApartmentComponent implements OnInit {
 
-  apartments;
-  constructor(private route: ActivatedRoute) { }
+  apartments: IApartment[] = [];
+  constructor(private buildingService: BuildingService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-  	let id = +this.route.parent.snapshot.params.id
-  	this.apartments = BUILDINGS[id]['apartments']
+  	let id = +this.route.parent.snapshot.params.id;
+  	this.buildingService.getBuildingApartments(id)
+  		.subscribe(response => this.apartments = response)
   }
 
 }
