@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { environment } from '../../../environments/environment';
+import { IBuilding } from '../../shared/interfaces';
 
 
 @Injectable()
@@ -17,14 +18,14 @@ export class BuildingService {
 
 	constructor(private http: HttpClient) { }
 
-	getBuildings() {
-		return this.http.get(this.buildingBaseUrl)
+	getBuildings(): Observable<IBuilding[]> {
+		return this.http.get<IBuilding[]>(this.buildingBaseUrl)
 			.catch(this.handleError);
 	}
 
-	getBuilding(id: number) {
+	getBuilding(id: number): Observable<IBuilding> {
 		const buildingUrl = `${this.buildingBaseUrl}/${id}/`;
-		return this.http.get(buildingUrl)
+		return this.http.get<IBuilding>(buildingUrl)
 			.catch(this.handleError);
 
 	}

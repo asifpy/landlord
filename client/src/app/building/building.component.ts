@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { BUILDINGS } from './sample.data'
 import { BuildingService } from '../core/services/building.service';
+import { IBuilding } from '../shared/interfaces';
+
 
 enum displayViewEnum {
 	Card = 0,
@@ -16,7 +18,7 @@ export class BuildingComponent implements OnInit {
 	title: string;
 	displayView: displayViewEnum;
 	displayViewEnum = displayViewEnum;
-	buildings = [];
+	buildings: IBuilding[] = [];
 
 	constructor(private buildingService: BuildingService) { }
 

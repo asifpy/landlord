@@ -1,18 +1,18 @@
 <h3>Building Overview</h3>
 
-<table>
-	<head>
+<table *ngIf="building" class="table table-bordered table-condensed table-hover">
+	<tbody>
 		<tr>
-			<th>ID</th>
+			<td>ID</td>
 			<td>{{building.id}}</td>
 		</tr>
 		<tr>
-			<th>Name</th>
+			<td>Name</td>
 			<td>{{building.name}}</td>
 		</tr>
 		<tr>
-			<th>Number</th>
+			<td>NUmber</td>
 			<td>{{building.number}}</td>
 		</tr>
-	</head>
+	</tbody>
 </table>

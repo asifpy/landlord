@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BuildingService } from '../../../core/services/building.service';
+import { IBuilding } from '../../../shared/interfaces';
 
 @Component({
   selector: 'building-overview',
@@ -10,7 +11,7 @@ import { BuildingService } from '../../../core/services/building.service';
 })
 export class BuildingOverviewComponent implements OnInit {
 
-	building;
+	building: IBuilding;
 
 	constructor(private buildingService: BuildingService, private route: ActivatedRoute) { }
 
