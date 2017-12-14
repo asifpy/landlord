@@ -5,7 +5,7 @@ from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import UserProfile, Building, Apartment
+from core.models import UserProfile, Building, Apartment, Landlord
 from api.v1.apartment.serializers import ApartmentSerializer
 from .permissions import IsLandlordPermission
 from .serializers import BuildingSerializer
@@ -16,19 +16,22 @@ class BuildingViewSet(viewsets.ModelViewSet):
     A simple ViewSet for viewing and editing building details.
     """
     serializer_class = BuildingSerializer
-    permission_classes = (IsAuthenticated, IsLandlordPermission)
+    queryset = Building.objects.all()
+    # permission_classes = (IsAuthenticated, IsLandlordPermission)
 
-    def get_queryset(self):
-        """Returns all the buildings for logged in landlord"""
+    # def get_queryset(self):
+    #     """Returns all the buildings for logged in landlord"""
 
-        user = self.request.user
-        profile = get_object_or_404(UserProfile, user=user)
-        landlord = profile.landlord
-        return landlord.buildings.all()
+    #     user = self.request.user
+    #     profile = get_object_or_404(UserProfile, user=user)
+    #     landlord = profile.landlord
+    #     return landlord.buildings.all()
 
     def perform_create(self, serializer):
         """Create new building with landlord"""
-        serializer.save(owner=self.request.user.profile.landlord)
+        # serializer.save(owner=self.request.user.profile.landlord)
+        landlord = Landlord.objects.get(name="SA")
+        serializer.save(owner=landlord)
 
 
 class BuildingApartmentViewSet(viewsets.ModelViewSet):

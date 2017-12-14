@@ -43,6 +43,7 @@ DJANGO_PACKAGES = [
 EXTERNAL_PACKAGES = [
     'rest_framework',
     'rest_auth',
+    'corsheaders',
     'django.contrib.sites',  # for registration app to work
     'allauth',
     'allauth.account',
@@ -56,6 +57,7 @@ INSTALLED_APPS = DJANGO_PACKAGES + EXTERNAL_PACKAGES + PROJECT_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,3 +137,5 @@ SITE_ID = 1
 
 # disable email notification on django-allauth
 EMAIL_VERIFICATION = 'optional'
+
+CORS_ORIGIN_ALLOW_ALL = True

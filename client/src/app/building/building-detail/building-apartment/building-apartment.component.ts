@@ -15,8 +15,8 @@ export class BuildingApartmentComponent implements OnInit {
 
   ngOnInit() {
 
-  	let id = +this.route.parent.params['id']
-  	this.apartments = BUILDINGS[id]
+  	let id = +this.route.parent.snapshot.params.id
+  	this.apartments = BUILDINGS[id]['apartments']
   }
 
 }

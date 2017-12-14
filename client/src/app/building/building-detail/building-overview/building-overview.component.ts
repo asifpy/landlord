@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BUILDINGS } from '../../sample.data'
+import { BuildingService } from '../../../core/services/building.service';
 
 @Component({
   selector: 'building-overview',
@@ -11,11 +11,14 @@ import { BUILDINGS } from '../../sample.data'
 export class BuildingOverviewComponent implements OnInit {
 
 	building;
-	constructor(private route: ActivatedRoute) { }
+
+	constructor(private buildingService: BuildingService, private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		let id = this.route.parent.params['id']
-		this.building = BUILDINGS[id]
+		let id = +this.route.parent.snapshot.params.id
+		this.buildingService.getBuilding(id).subscribe(
+			response => this.building = response
+		)
   }
 
 }

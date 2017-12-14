@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BUILDINGS } from './sample.data'
+import { BuildingService } from '../core/services/building.service';
 
 enum displayViewEnum {
 	Card = 0,
@@ -15,14 +16,16 @@ export class BuildingComponent implements OnInit {
 	title: string;
 	displayView: displayViewEnum;
 	displayViewEnum = displayViewEnum;
-	buildings;
+	buildings = [];
 
-	constructor() { }
+	constructor(private buildingService: BuildingService) { }
 
 	ngOnInit() {
 		this.title = "Buildings"
 		this.displayView = displayViewEnum.Card
-		this.buildings = BUILDINGS
+
+		this.buildingService.getBuildings()
+			.subscribe(response =>this.buildings=response)
 	}
 
 	changeDisplayView(view: displayViewEnum) {

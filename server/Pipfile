@@ -16,6 +16,7 @@ djangorestframework = "*"
 django-rest-auth = "*"
 djangorestframework-jwt = "*"
 django-allauth = "*"
+django-cors-headers = "*"
 
 
 [requires]
