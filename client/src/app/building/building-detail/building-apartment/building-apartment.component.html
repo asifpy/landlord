@@ -1,19 +1,23 @@
-<h3>Apartments</h3>
+<h3>Apartments of {{building?.name}}</h3>
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
             <th>Number</th>
-            <th>Is Vacant</th>
+            <th>Is Vacant?</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let apartment of apartments;">
+        <tr *ngFor="let apartment of building?.apartments;">
             <td>{{apartment.number}}</td>
-            <td>{{apartment.is_vacant}}</td>
+            <td>{{apartment.is_vacant?'Yes':'No'}}</td>
         </tr>
-        <tr *ngIf="!apartments.length">
+        <tr *ngIf="building && !building.apartments.length">
             <td>&nbsp;</td>
-            <td colspan="2">No Records Found</td>
+            <td colspan="2">No Apartments Found</td>
+        </tr>
+        <tr *ngIf="!building">
+            <td>&nbsp;</td>
+            <td colspan="2">No Building Found</td>
         </tr>
     </tbody>
 </table>
