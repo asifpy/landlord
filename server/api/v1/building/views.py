@@ -33,13 +33,19 @@ class BuildingViewSet(viewsets.ModelViewSet):
         landlord = Landlord.objects.get(name="SA")
         serializer.save(owner=landlord)
 
+    def get_serializer_context(self):
+        return {
+            'enable_nested_apartments': True,
+            'request': self.request
+        }
+
 
 class BuildingApartmentViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing apartment details.
     """
     serializer_class = ApartmentSerializer
-    permission_classes = (IsAuthenticated, IsLandlordPermission)
+    # permission_classes = (IsAuthenticated, IsLandlordPermission)
 
     @property
     def get_building(self):

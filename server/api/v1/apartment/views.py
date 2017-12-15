@@ -18,11 +18,11 @@ class ApartmentViewSet(viewsets.ModelViewSet):
     A simple ViewSet for viewing and editing apartment details.
     """
     serializer_class = ApartmentSerializer
-    permission_classes = (IsAuthenticated, IsLandlordPermission)
+    # permission_classes = (IsAuthenticated, IsLandlordPermission)
 
     def get_queryset(self):
         """Returns all the apartments for logged in landlord"""
-
+        return Apartment.objects.all()
         user = self.request.user
         profile = get_object_or_404(UserProfile, user=user)
         landlord = profile.landlord
