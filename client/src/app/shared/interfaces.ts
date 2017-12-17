@@ -10,4 +10,5 @@ export interface IApartment {
     number: string;
     buildingId: number;
     isVacant: boolean;
+    building: IBuilding;
 }

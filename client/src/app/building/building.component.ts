@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BUILDINGS } from './sample.data'
 import { BuildingService } from '../core/services/building.service';
 import { IBuilding } from '../shared/interfaces';
 

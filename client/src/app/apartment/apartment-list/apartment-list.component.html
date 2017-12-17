@@ -1,0 +1,24 @@
+<h3>Apartments</h3>
+
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Is Vacant?</th>
+            <th>Building</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let apartment of apartments;">
+            <td>{{apartment.number}}</td>
+            <td>{{apartment.is_vacant?'Yes':'No'}}</td>
+            <td>
+            	<a [routerLink]="['../buildings', apartment.building.id]">{{apartment.building.name}}</a>
+            </td>
+        </tr>
+        <tr *ngIf="!apartments">
+            <td>&nbsp;</td>
+            <td colspan="3">No Apartments Found</td>
+        </tr>
+    </tbody>
+</table>
