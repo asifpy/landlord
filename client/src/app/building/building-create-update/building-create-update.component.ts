@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 import { IBuilding } from '../../shared/interfaces';
@@ -20,6 +20,7 @@ export class BuildingCreateUpdateComponent implements OnInit {
   constructor(
 		private buildingService: BuildingService,
 		private route: ActivatedRoute,
+		private router: Router,
 		private fb: FormBuilder
 	) { }
 
@@ -41,7 +42,6 @@ export class BuildingCreateUpdateComponent implements OnInit {
   				this.building = response
   			})
   	}
-
   }
 
   // pre-populate form with building instance
@@ -50,20 +50,41 @@ export class BuildingCreateUpdateComponent implements OnInit {
   	this.buildingForm.get('number').setValue(building.number)
   }
 
+  // create new building
+  createBuilding() {
+  	this.buildingService.createBuilding(
+  		this.buildingForm.value).subscribe(
+  		(building: IBuilding) => {
+  			if(building) {
+  				this.router.navigate(['/buildings']);
+  			}
+  		}
+  	)
+  }
+
+  // update building
+  updateBuilding() {
+  	this.buildingService.updateBuilding(
+  		this.building.id,
+  		this.buildingForm.value
+  	).subscribe(
+  		(building: IBuilding) => {
+  			if(building) {
+  				this.router.navigate(['/buildings', building.id]);
+  			}
+  		}
+  	)
+  }
+
+  // hande form submission
   saveBuilding() {
-  	
   	if(this.buildingForm.valid) {
   		if(this.building) { 
-  			//update building instance
-  			this.buildingService.updateBuilding(
-  				this.building.id,
-  				this.buildingForm.value
-  			).subscribe()
+  			// update building
+  			this.updateBuilding()
   		} else {
   			//create building instance
-  			this.buildingService.createBuilding(
-  				this.buildingForm.value
-  			).subscribe()
+  			this.createBuilding()
   		}
   	}
   }

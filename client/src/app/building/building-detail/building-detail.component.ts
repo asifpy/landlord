@@ -10,9 +10,9 @@ import { BUILDINGS } from '../sample.data'
 })
 export class BuildingDetailComponent {
 	
-	// building_id;
+	building_id;
 	
 	constructor(private route: ActivatedRoute) {
-		// this.building_id = +this.route.snapshot.params["id"]
+		this.building_id = +this.route.snapshot.params["id"]
 	}
 }

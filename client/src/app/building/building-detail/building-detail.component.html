@@ -1,17 +1,22 @@
 <div class="row">
 	<div class="col-md-3">
-		<a class="btn btn-warning btn-sm" routerLink="overview" routerLinkActive="active">
-			<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;Building Details
+		<a class="btn btn-primary btn-sm" routerLink="overview" routerLinkActive="active">
+			<span class="glyphicon glyphicon-list"></span>Building Details
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a class="btn btn-success btn-sm" [routerLink]="['/buildings', building_id, 'update']" routerLinkActive="active">
+			<span class="glyphicon glyphicon-tags"></span>Update
 		</a>
 	</div>
 	<div class="col-md-3">
 		<a class="btn btn-warning btn-sm" routerLink="apartments" routerLinkActive="active">
-			<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Building Apartments
+			<span class="glyphicon glyphicon-tags"></span>Building Apartments
 		</a>
 	</div>
 	<div class="col-md-3">
-		<a class="btn btn-warning btn-sm" routerLink="/" routerLinkActive="active">
-			<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;View all buildings
+		<a class="btn btn-gray btn-sm" routerLink="/" routerLinkActive="active">
+			<span class="glyphicon glyphicon-tags"></span>View buildings
 		</a>
 	</div>
 </div>
