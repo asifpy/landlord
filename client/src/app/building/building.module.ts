@@ -2,6 +2,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from "@angular/forms";
 
 /* building imports */
 import { BuildingCardComponent } from './building-card/building-card.component';
@@ -11,12 +12,14 @@ import { BuildingComponent } from './building.component';
 import { BuildingAppRoutes } from './building.routes';
 import { BuildingApartmentComponent } from './building-detail/building-apartment/building-apartment.component';
 import { BuildingOverviewComponent } from './building-detail/building-overview/building-overview.component';
+import { BuildingCreateUpdateComponent } from './building-create-update/building-create-update.component';
 
 
 @NgModule({
   imports: [
     RouterModule.forChild(BuildingAppRoutes),
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     BuildingCardComponent,
@@ -25,6 +28,7 @@ import { BuildingOverviewComponent } from './building-detail/building-overview/b
     BuildingComponent,
     BuildingApartmentComponent,
     BuildingOverviewComponent,
+    BuildingCreateUpdateComponent,
   ],
   providers: []
 })

@@ -40,6 +40,7 @@ class BuildingViewSet(viewsets.ModelViewSet):
         }
 
 
+# TODO: these endpoints are not required
 class BuildingApartmentViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing apartment details.
