@@ -27,6 +27,16 @@ class BuildingViewSet(viewsets.ModelViewSet):
     #     landlord = profile.landlord
     #     return landlord.buildings.all()
 
+    def retrieve(self, request, pk=None):
+        """Override detial route to attach related apartments"""
+
+        building = get_object_or_404(self.queryset, pk=pk)
+        serializer = BuildingSerializer(
+            building,
+            context={'enable_apartments': True}
+        )
+        return Response(serializer.data)
+
     def perform_create(self, serializer):
         """Create new building with landlord"""
         # serializer.save(owner=self.request.user.profile.landlord)

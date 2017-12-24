@@ -23,17 +23,28 @@ class ApartmentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Returns all the apartments for logged in landlord"""
         return Apartment.objects.all()
+
         user = self.request.user
         profile = get_object_or_404(UserProfile, user=user)
         landlord = profile.landlord
         return Apartment.objects.filter(building__owner=landlord)
+
+    def retrieve(self, request, pk=None):
+        """Override detial route to attach related tenants"""
+
+        building = get_object_or_404(self.get_queryset(), pk=pk)
+        serializer = ApartmentSerializer(
+            building,
+            context={'enable_tenants': True}
+        )
+        return Response(serializer.data)
 
 
 class ApartmentTenantViewset(viewsets.ModelViewSet):
     """Viewset for viewing and editing tenant details"""
 
     serializer_class = TenantSerializer
-    permission_classes = (IsAuthenticated, IsLandlordPermission)
+    # permission_classes = (IsAuthenticated, IsLandlordPermission)
 
     def get_serializer_context(self):
         return {

@@ -1,28 +1,31 @@
 from rest_framework import serializers
 
 from core.models import Building
-from api.v1.apartment.serializers import ApartmentSerializer
+from core.serializers import BaseApartmentSerializer
 
 
 class BuildingSerializer(serializers.ModelSerializer):
 
+    no_of_apartments = serializers.SerializerMethodField()
+
     class Meta:
         model = Building
-        fields = ('id', 'name', 'number')
+        fields = ('id', 'name', 'number', 'no_of_apartments')
+
+    def get_no_of_apartments(self, instance):
+        """Returns the apartments count for building"""
+        return instance.apartments.count()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        enable_nested_apartments = self.context.get(
-            'enable_nested_apartments',
-            None
-        )
-
-        # this will hides 'apartments' if you are coming from apartment viewset
-        if enable_nested_apartments:
-            self.fields['apartments'] = ApartmentSerializer(
+        enable_apartments = self.context.get('enable_apartments', None)
+        # show apartments only for `retrieve` action
+        if enable_apartments:
+            self.fields['apartments'] = BaseApartmentSerializer(
                 read_only=True,
-                many=True)
+                many=True
+            )
 
 
 # http://www.django-rest-framework.org/api-guide/relations/#custom-hyperlinked-fields

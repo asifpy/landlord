@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 /* apartment imports */
 import { ApartmentListComponent } from './apartment-list/apartment-list.component';
 import { ApartmentRoutes } from './apartment.routing';
+import { TenantHistoryComponent } from './tenant-history/tenant-history.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild(ApartmentRoutes),
     CommonModule
   ],
-  declarations: [ApartmentListComponent]
+  declarations: [ApartmentListComponent, TenantHistoryComponent]
 })
 export class ApartmentModule { }

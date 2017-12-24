@@ -1,12 +1,15 @@
 from rest_framework import serializers
 
 from core.models import Apartment, Building
+from core.serializers import (
+    BaseBuildingSerializer,
+    BaseTenantSerializer
+)
 
 
 class ApartmentSerializer(serializers.ModelSerializer):
-    # method field instead of nested serializer to avoid circular imports
-    building = serializers.SerializerMethodField()
 
+    building = serializers.SerializerMethodField()
     building_id = serializers.PrimaryKeyRelatedField(
         queryset=Building.objects.all(),
         source='building',
@@ -15,12 +18,25 @@ class ApartmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Apartment
-        fields = ('id', 'number', 'is_vacant', 'building', 'building_id')
+        fields = (
+            'id',
+            'number',
+            'is_vacant',
+            'building',
+            'building_id'
+        )
 
     def get_building(self, instance):
-        # to avoid circular imports
-        from api.v1.building.serializers import BuildingSerializer
-        return BuildingSerializer(
-            instance.building,
-            context={'enable_nested_apartments': False}
-        ).data
+        """Attach the building instance to the apartment"""
+        return BaseBuildingSerializer(instance.building).data
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        enable_tenants = self.context.get('enable_tenants', None)
+        # show tenants only for `retrieve` action
+        if enable_tenants:
+            self.fields['tenants'] = BaseTenantSerializer(
+                read_only=True,
+                many=True
+            )
