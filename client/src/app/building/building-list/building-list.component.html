@@ -1,5 +1,3 @@
-<h3>Buildings</h3>
-
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
@@ -9,8 +7,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let building of buildings;">
+            <td>
+                <a [routerLink]="['./buildings', building.id]">{{building.name}}</a>
+            </td>
             <td>{{building.name}}</td>
             <td>{{building.number}}</td>
+            <td>
+                <a class="btn btn-primary" [routerLink]="['./buildings', building.id, 'update']">Update</a>
+            </td>
         </tr>
         <tr *ngIf="!buildings.length">
             <td>&nbsp;</td>
