@@ -1,25 +1,26 @@
 <h3>Apartment Tenants</h3>
-<p>Apartment No: {{apartment.number}}</p>
 <hr/>
-<table class="table table-bordered table-condensed table-hover">
+
+<p *ngIf="apartment">Apartment No: {{apartment.number}}</p>
+<table *ngIf="apartment" class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Mobile</th>
             <th>Is Active?</th>
-            <th>Occupied At</th>
+            <th>Registered At</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let tenant of tenants;">
-            <td>{{tenant.name}}</a></td>
+        <tr *ngFor="let tenant of apartment.tenants;">
+            <td>{{tenant.name}}</td>
             <td>{{tenant.email}}</td>
             <td>{{tenant.mobile}}</td>
             <td>{{tenant.is_active}}</td>
             <td>{{tenant.created}}</td>
         </tr>
-        <tr *ngIf="!tenants.length">
+        <tr *ngIf="!apartment.tenants.length">
             <td colspan="5">No Tenants Found</td>
         </tr>
     </tbody>

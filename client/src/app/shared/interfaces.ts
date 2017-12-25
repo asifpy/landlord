@@ -11,4 +11,14 @@ export interface IApartment {
     buildingId: number;
     isVacant: boolean;
     building: IBuilding;
+    tenants?: ITenant;
+}
+
+export interface ITenant {
+	id: number;
+	name: string;
+	email: string;
+	mobile: string;
+	isActive: boolean;
+	apartment: IApartment;
 }

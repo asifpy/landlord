@@ -30,6 +30,7 @@ import { BuildingCreateUpdateComponent } from './building-create-update/building
     BuildingOverviewComponent,
     BuildingCreateUpdateComponent,
   ],
-  providers: []
+  providers: [],
+  exports: [CommonModule]
 })
 export class BuildingModule {}

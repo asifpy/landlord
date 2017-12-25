@@ -12,7 +12,7 @@ import { IApartment } from '../../shared/interfaces';
 @Injectable()
 export class ApartmentService {
 
-	private apartmentBaseUrl: string = `${environment.apiUrl}api/v1/apartments`;
+	private apartmentBaseUrl: string = `${environment.apiUrl}api/v1/apartments/`;
 	apartmentsBaseUrl: string;
 
 	constructor(private http: HttpClient) { }
@@ -23,7 +23,7 @@ export class ApartmentService {
 	}
 
 	getApartment(id: number): Observable<IApartment> {
-		const apartmentUrl = `${this.apartmentBaseUrl}/${id}/`;
+		const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
 		return this.http.get<IApartment>(apartmentUrl)
 			.catch(this.handleError);
 

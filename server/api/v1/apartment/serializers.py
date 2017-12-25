@@ -22,6 +22,7 @@ class ApartmentSerializer(serializers.ModelSerializer):
             'id',
             'number',
             'is_vacant',
+            'created',
             'building',
             'building_id'
         )

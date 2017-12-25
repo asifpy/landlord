@@ -21,4 +21,4 @@ class BaseTenantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tenant
-        fields = ('id', 'name', 'is_active', 'email', 'mobile')
+        fields = ('id', 'name', 'is_active', 'email', 'mobile', 'created')

@@ -5,15 +5,21 @@
         <tr>
             <th>Number</th>
             <th>Is Vacant?</th>
+            <th>Created</th>
             <th>Building</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let apartment of apartments;">
             <td>{{apartment.number}}</td>
             <td>{{apartment.is_vacant?'Yes':'No'}}</td>
+            <td>{{apartment.created}}</td>
             <td>
             	<a [routerLink]="['../buildings', apartment.building.id]">{{apartment.building.name}}</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" [routerLink]="['./apartments', apartment.id, 'tenants']">View Tenants</a>
             </td>
         </tr>
         <tr *ngIf="!apartments">

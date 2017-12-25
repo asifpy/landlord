@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { ApartmentService } from '../../core/services/apartment.service';
+import { IApartment } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-tenant-history',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TenantHistoryComponent implements OnInit {
 
-  constructor() { }
+	apartment: IApartment
+
+  constructor(
+    private apartmentService: ApartmentService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    let id = this.route.snapshot.params.id
+    this.apartmentService.getApartment(id).subscribe(
+      response => this.apartment = response
+    )
   }
-
 }
