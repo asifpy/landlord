@@ -16,10 +16,10 @@
             <td>{{apartment.is_vacant?'Yes':'No'}}</td>
             <td>{{apartment.created}}</td>
             <td>
-            	<a [routerLink]="['../buildings', apartment.building.id]">{{apartment.building.name}}</a>
+                <a [routerLink]="['/buildings', apartment.building.id]">{{apartment.building.name}}</a>
             </td>
             <td>
-                <a class="btn btn-primary" [routerLink]="['./apartments', apartment.id, 'tenants']">View Tenants</a>
+                <a class="btn btn-primary" [routerLink]="['/apartments', apartment.id, 'tenants']">View Tenants</a>
             </td>
         </tr>
         <tr *ngIf="!apartments">

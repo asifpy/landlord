@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { BUILDINGS } from '../sample.data'
 
 @Component({
   selector: 'building-detail',

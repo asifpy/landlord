@@ -5,5 +5,5 @@ import { TenantHistoryComponent } from './tenant-history/tenant-history.componen
 
 export const ApartmentRoutes: Routes = [
 	{ path: '', component: ApartmentListComponent },
-	{ path: 'apartments/:id/tenants', component: TenantHistoryComponent}
+	{ path: ':id/tenants', component: TenantHistoryComponent}
 ];

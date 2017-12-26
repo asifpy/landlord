@@ -9,14 +9,14 @@ import { BuildingCreateUpdateComponent } from './building-create-update/building
 
 export const BuildingAppRoutes: Routes = [
 	{ path: '', component: BuildingComponent },
-	{ path: 'buildings/create', component: BuildingCreateUpdateComponent },
+	{ path: 'create', component: BuildingCreateUpdateComponent },
 
-	{ path: 'buildings/:id', component: BuildingDetailComponent,
+	{ path: ':id', component: BuildingDetailComponent,
 		children: [
 			{ path: '', redirectTo: 'overview', pathMatch: 'full' },
 			{ path: 'overview', component: BuildingOverviewComponent },
 			{ path: 'apartments', component: BuildingApartmentComponent }
 		]
 	},
-	{ path: 'buildings/:id/update', component: BuildingCreateUpdateComponent}
+	{ path: ':id/update', component: BuildingCreateUpdateComponent}
 ];

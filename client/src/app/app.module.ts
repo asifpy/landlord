@@ -14,8 +14,6 @@ import { AppRoutes } from './app.routes';
 
 /* modules */
 import { CoreModule } from './core/core.module';
-import { BuildingModule } from './building/building.module';
-import { ApartmentModule } from './apartment/apartment.module';
 
 
 @NgModule({
@@ -31,8 +29,6 @@ import { ApartmentModule } from './apartment/apartment.module';
     NgbModule.forRoot(),
 
     CoreModule,
-    BuildingModule,
-    ApartmentModule
   ],
   exports : [],
   providers: [],

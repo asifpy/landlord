@@ -8,11 +8,11 @@
     <tbody>
         <tr *ngFor="let building of buildings;">
             <td>
-                <a [routerLink]="['./buildings', building.id]">{{building.name}}</a>
+                <a [routerLink]="['/buildings', building.id, 'overview']">{{building.name}}</a>
             </td>
             <td>{{building.number}}</td>
             <td>
-                <a class="btn btn-primary" [routerLink]="['./buildings', building.id, 'update']">Update</a>
+                <a class="btn btn-primary" [routerLink]="['/buildings', building.id, 'update']">Update</a>
             </td>
         </tr>
         <tr *ngIf="!buildings.length">
