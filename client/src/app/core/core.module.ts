@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
@@ -9,12 +9,20 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
 @NgModule({
   imports: [RouterModule],
   declarations: [NavbarComponent, FormFieldErrorComponent],
-  providers: [
-  	BuildingService,
-  	ApartmentService
-  ],
   exports: [
     NavbarComponent
-  ]
+  ],
+  providers: [BuildingService, ApartmentService]
 })
-export class CoreModule {}
+export class CoreModule {
+
+	// // this will guarantee that only one instance of the building/apartment is added to the root module.
+	// // When the CoreModule is loaded (even lazy loaded), no new instance of that service is going to
+	// // be added to the child injector.
+	// static forRoot(): ModuleWithProviders {
+	// 	return {
+	// 		ngModule: CoreModule,
+ //      providers: [BuildingService, ApartmentService]
+ //    }
+ //  }
+}

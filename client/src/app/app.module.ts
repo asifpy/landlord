@@ -28,7 +28,7 @@ import { CoreModule } from './core/core.module';
 
     NgbModule.forRoot(),
 
-    CoreModule,
+    CoreModule
   ],
   exports : [],
   providers: [],
