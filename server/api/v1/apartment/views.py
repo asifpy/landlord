@@ -32,9 +32,9 @@ class ApartmentViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None):
         """Override detial route to attach related tenants"""
 
-        building = get_object_or_404(self.get_queryset(), pk=pk)
+        apartment = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = ApartmentSerializer(
-            building,
+            apartment,
             context={'enable_tenants': True}
         )
         return Response(serializer.data)

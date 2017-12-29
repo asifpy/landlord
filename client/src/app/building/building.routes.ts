@@ -6,7 +6,6 @@ import { BuildingApartmentComponent } from './building-detail/building-apartment
 import { BuildingOverviewComponent } from './building-detail/building-overview/building-overview.component';
 import { BuildingCreateUpdateComponent } from './building-create-update/building-create-update.component';
 
-
 export const BuildingAppRoutes: Routes = [
 	{ path: '', component: BuildingComponent },
 	{ path: 'create', component: BuildingCreateUpdateComponent },

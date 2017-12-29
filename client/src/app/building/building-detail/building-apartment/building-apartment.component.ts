@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { BuildingService } from '../../../core/services/building.service';
+import { ApartmentService } from '../../../core/services/apartment.service';
 import { IApartment, IBuilding } from '../../../shared/interfaces';
 
 @Component({
@@ -14,13 +16,51 @@ export class BuildingApartmentComponent implements OnInit {
   apartments: IApartment[] = [];
   building: IBuilding;
 
-  constructor(private buildingService: BuildingService, private route: ActivatedRoute) { }
+  // access the template reference variable from component
+  @ViewChild('createApartmentForm') apartmentForm: NgForm;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private buildingService: BuildingService,
+    private apartmentService: ApartmentService) { }
 
   ngOnInit() {
-
-  	let id = +this.route.parent.snapshot.params.id;
-  	this.buildingService.getBuilding(id)
-  		.subscribe(response => this.building = response)
+    this.getBuilding()
   }
+
+  // get building instance, which further will have apartments
+  getBuilding(){
+    let id = +this.route.parent.snapshot.params.id;
+    this.buildingService.getBuilding(id).subscribe(
+      response => this.building = response)
+  }
+
+  // create new apartment
+  createApartment() {
+    let postData = this.apartmentForm.value
+    postData['building_id'] = this.building.id
+
+    this.apartmentService.createApartment(
+      postData).subscribe(
+      (apartment: IApartment) => {
+        if(apartment) {
+          
+          // get building instance, which further will have latest apartments
+          this.getBuilding()
+          this.apartmentForm.reset()
+        }
+      }
+    )
+  }
+
+  // hande form submission
+  saveApartment() {
+    if(this.apartmentForm.valid) {
+      //create apartment instance
+      this.createApartment()
+    }
+  }
+
 
 }

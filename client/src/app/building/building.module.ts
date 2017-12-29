@@ -2,7 +2,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* building imports */
 import { BuildingCardComponent } from './building-card/building-card.component';
@@ -19,7 +20,9 @@ import { BuildingCreateUpdateComponent } from './building-create-update/building
   imports: [
     RouterModule.forChild(BuildingAppRoutes),
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule
   ],
   declarations: [
     BuildingCardComponent,

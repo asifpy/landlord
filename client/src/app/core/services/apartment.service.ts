@@ -29,6 +29,17 @@ export class ApartmentService {
 
 	}
 
+	createApartment(apartment: IApartment): Observable<IApartment> {
+		return this.http.post<IApartment>(this.apartmentBaseUrl, apartment)
+			.catch(this.handleError);
+	}
+
+	updateApartment(id:number, apartment: IApartment): Observable<IApartment> {
+		const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
+		return this.http.put<IApartment>(apartmentUrl, apartment)
+			.catch(this.handleError);
+	}
+
 	private handleError(error: HttpErrorResponse) {
 
 		if (error.error instanceof Error) {
