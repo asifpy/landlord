@@ -35,7 +35,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let apartment of building?.apartments;">
-            <td>{{apartment.number}}</td>
+            <td><a [routerLink]="['/apartments']">{{apartment.number}}</a></td>
             <td>{{apartment.is_vacant?'Yes':'No'}}</td>
         </tr>
         <tr *ngIf="building && !building.apartments.length">
