@@ -54,7 +54,7 @@ export class BuildingApartmentComponent implements OnInit {
     )
   }
 
-  // hande form submission
+  // handel form submission
   saveApartment() {
     if(this.apartmentForm.valid) {
       //create apartment instance

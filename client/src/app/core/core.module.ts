@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BuildingService } from './services/building.service';
 import { ApartmentService } from './services/apartment.service';
+import { TenantService } from './services/tenant.service';
 import { FormFieldErrorComponent } from './form-field-error/form-field-error.component';
 
 @NgModule({
@@ -12,7 +13,11 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
   exports: [
     NavbarComponent
   ],
-  providers: [BuildingService, ApartmentService]
+  providers: [
+    BuildingService,
+    ApartmentService,
+    TenantService
+  ]
 })
 export class CoreModule {
 

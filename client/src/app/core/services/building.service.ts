@@ -14,7 +14,6 @@ import { IBuilding } from '../../shared/interfaces';
 export class BuildingService {
 
 	private buildingBaseUrl: string = `${environment.apiUrl}api/v1/buildings/`;
-	apartmentsBaseUrl: string;
 
 	constructor(private http: HttpClient) { }
 

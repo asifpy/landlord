@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 /* apartment imports */
 import { ApartmentListComponent } from './apartment-list/apartment-list.component';
-import { ApartmentRoutes } from './apartment.routing';
+import { ApartmentRoutes } from './apartment.routes';
 import { TenantHistoryComponent } from './tenant-history/tenant-history.component';
 import { ApartmentCreateUpdateComponent } from './apartment-create-update/apartment-create-update.component';
 

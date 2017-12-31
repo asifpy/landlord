@@ -6,36 +6,36 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { environment } from '../../../environments/environment';
-import { IApartment } from '../../shared/interfaces';
+import { ITenant } from '../../shared/interfaces';
 
 
 @Injectable()
-export class ApartmentService {
+export class TenantService {
 
-	private apartmentBaseUrl: string = `${environment.apiUrl}api/v1/apartments/`;
+	private TenantBaseUrl: string = `${environment.apiUrl}api/v1/tenants/`;
 
 	constructor(private http: HttpClient) { }
 
-	getApartments(): Observable<IApartment[]> {
-		return this.http.get<IApartment[]>(this.apartmentBaseUrl)
+	getTenants(): Observable<ITenant[]> {
+		return this.http.get<ITenant[]>(this.TenantBaseUrl)
 			.catch(this.handleError);
 	}
 
-	getApartment(id: number): Observable<IApartment> {
-		const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
-		return this.http.get<IApartment>(apartmentUrl)
+	getTenant(id: number): Observable<ITenant> {
+		const tenantUrl = `${this.TenantBaseUrl}${id}/`;
+		return this.http.get<ITenant>(tenantUrl)
 			.catch(this.handleError);
 
 	}
 
-	createApartment(apartment: IApartment): Observable<IApartment> {
-		return this.http.post<IApartment>(this.apartmentBaseUrl, apartment)
+	createTenant(tenant: ITenant): Observable<ITenant> {
+		return this.http.post<ITenant>(this.TenantBaseUrl, tenant)
 			.catch(this.handleError);
 	}
 
-	updateApartment(id:number, apartment: IApartment): Observable<IApartment> {
-		const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
-		return this.http.put<IApartment>(apartmentUrl, apartment)
+	updateTenant(id:number, tenant: ITenant): Observable<ITenant> {
+		const tenantUrl = `${this.TenantBaseUrl}${id}/`;
+		return this.http.put<ITenant>(tenantUrl, tenant)
 			.catch(this.handleError);
 	}
 
