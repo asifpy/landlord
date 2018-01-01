@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <h3>Apartments of {{building?.name}}</h3>
+        <h3>Apartments of {{ building?.name }}</h3>
     </div>
     <div class="col-md-6">
         <form class="form-inline float-right" novalidate #createApartmentForm="ngForm" (ngSubmit)="saveApartment()">
@@ -35,8 +35,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let apartment of building?.apartments;">
-            <td><a [routerLink]="['/apartments']">{{apartment.number}}</a></td>
-            <td>{{apartment.is_vacant?'Yes':'No'}}</td>
+            <td><a [routerLink]="['/apartments']">{{ apartment.number }}</a></td>
+            <td>{{ apartment.is_vacant?'Yes':'No' }}</td>
         </tr>
         <tr *ngIf="building && !building.apartments.length">
             <td>&nbsp;</td>

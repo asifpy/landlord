@@ -1,4 +1,4 @@
-<h3>{{title}}</h3>
+<h3>{{ title }}</h3>
 <hr/>
 <form novalidate (ngSubmit)="saveTenant()" [formGroup]="tenantForm">
 
@@ -32,7 +32,7 @@
 	    	<select class="form-control" formControlName="building_id" (change)="onSelect($event.target.value)">
 	    		<option value="">Select a building</option>
 	    		<option *ngFor="let building of buildings"
-			        [value]="building.id">{{building.name}}
+			        [value]="building.id">{{ building.name }}
 			    </option>
 			</select>
 	  	</div>
@@ -48,7 +48,7 @@
 	    		<div *ngIf="tenant;then selectedApartmentChoice else nonSelectedChoice">here is ignored</div>
 
 				<ng-template #selectedApartmentChoice>
-					<option [value]="tenant.apartment.id">{{tenant.apartment.number}}</option>
+					<option [value]="tenant.apartment.id">{{ tenant.apartment.number }}</option>
 				</ng-template>
 				
 				<ng-template #nonSelectedChoice>
@@ -56,7 +56,7 @@
 				</ng-template>
 
 	    		<option *ngFor="let apartment of filteredApartments"
-			        [value]="apartment.id">{{apartment.number}}
+			        [value]="apartment.id">{{ apartment.number }}
 			    </option>
 			</select>
 	  	</div>

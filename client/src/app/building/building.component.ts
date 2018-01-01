@@ -5,31 +5,31 @@ import { IBuilding } from '../shared/interfaces';
 
 
 enum displayViewEnum {
-	Card = 0,
-	Grid = 1
+    Card = 0,
+    Grid = 1
 }
 
 @Component({
-	selector: 'lanlord-building',
-	templateUrl: './building.component.html',
+    selector: 'app-building',
+    templateUrl: './building.component.html'
 })
 export class BuildingComponent implements OnInit {
-	title: string;
-	displayView: displayViewEnum;
-	displayViewEnum = displayViewEnum;
-	buildings: IBuilding[] = [];
+    title: string;
+    displayView: displayViewEnum;
+    displayViewEnum = displayViewEnum;
+    buildings: IBuilding[] = [];
 
-	constructor(private buildingService: BuildingService) { }
+    constructor(private buildingService: BuildingService) { }
 
-	ngOnInit() {
-		this.title = "Buildings"
-		this.displayView = displayViewEnum.Card
+    ngOnInit() {
+        this.title = 'Buildings';
+        this.displayView = displayViewEnum.Card;
 
-		this.buildingService.getBuildings()
-			.subscribe(response =>this.buildings=response)
-	}
+        this.buildingService.getBuildings()
+            .subscribe(response => this.buildings = response);
+    }
 
-	changeDisplayView(view: displayViewEnum) {
-		this.displayView = view
-	}
+    changeDisplayView(view: displayViewEnum) {
+        this.displayView = view;
+    }
 }

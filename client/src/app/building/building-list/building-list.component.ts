@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { IBuilding } from '../../shared/interfaces';
 
 @Component({
-  selector: 'landlord-building-list',
+  selector: 'app-building-list',
   templateUrl: './building-list.component.html',
   styleUrls: ['./building-list.component.css'],
   encapsulation: ViewEncapsulation.None

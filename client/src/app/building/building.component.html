@@ -32,13 +32,13 @@
 
         <br/>
 
-        <landlord-building-card 
+        <app-building-card 
           [buildings]="buildings" 
-          [hidden]="displayView !== displayViewEnum.Card"></landlord-building-card>
+          [hidden]="displayView !== displayViewEnum.Card"></app-building-card>
     
-        <landlord-building-list 
+        <app-building-list 
           [buildings]="buildings" 
-          [hidden]="displayView !== displayViewEnum.Grid"></landlord-building-list>
+          [hidden]="displayView !== displayViewEnum.Grid"></app-building-list>
 
         <!-- <cm-map *ngIf="filteredCustomers.length" 
             [zoom]="2" 

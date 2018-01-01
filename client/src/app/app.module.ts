@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* ng-bootstrap */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -35,3 +35,4 @@ import { CoreModule } from './core/core.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

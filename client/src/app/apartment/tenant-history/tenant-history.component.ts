@@ -11,7 +11,7 @@ import { IApartment } from '../../shared/interfaces';
 })
 export class TenantHistoryComponent implements OnInit {
 
-	apartment: IApartment
+  apartment: IApartment;
 
   constructor(
     private apartmentService: ApartmentService,
@@ -19,9 +19,9 @@ export class TenantHistoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.params.id
+    const id = this.route.snapshot.params.id;
     this.apartmentService.getApartment(id).subscribe(
       response => this.apartment = response
-    )
+    );
   }
 }

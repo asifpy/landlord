@@ -4,19 +4,20 @@ import { ApartmentService } from '../../core/services/apartment.service';
 import { IApartment } from '../../shared/interfaces';
 
 @Component({
-	selector: 'lanlord-apartment-list',
-	templateUrl: './apartment-list.component.html',
+  selector: 'app-apartment-list',
+  templateUrl: './apartment-list.component.html',
 })
 export class ApartmentListComponent implements OnInit {
-	title: string;
-	apartments: IApartment[] = [];
 
-	constructor(private apartmentService: ApartmentService) { }
+  title: string;
+  apartments: IApartment[] = [];
 
-	ngOnInit() {
-		this.title = "Apartments"
+  constructor(private apartmentService: ApartmentService) { }
 
-		this.apartmentService.getApartments()
-			.subscribe(response =>this.apartments=response)
-	}
+  ngOnInit() {
+    this.title = 'Apartments';
+
+    this.apartmentService.getApartments()
+      .subscribe(response => this.apartments = response);
+  }
 }

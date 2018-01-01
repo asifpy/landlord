@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* apartment imports */
 import { ApartmentListComponent } from './apartment-list/apartment-list.component';
@@ -17,9 +17,9 @@ import { ApartmentCreateUpdateComponent } from './apartment-create-update/apartm
     ReactiveFormsModule
   ],
   declarations: [
-  	ApartmentListComponent,
-  	TenantHistoryComponent,
-  	ApartmentCreateUpdateComponent
+    ApartmentListComponent,
+    TenantHistoryComponent,
+    ApartmentCreateUpdateComponent
   ]
 })
 export class ApartmentModule { }

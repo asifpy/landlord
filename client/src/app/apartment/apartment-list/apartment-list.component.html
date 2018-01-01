@@ -19,11 +19,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let apartment of apartments;">
-            <td>{{apartment.number}}</td>
-            <td>{{apartment.is_vacant?'Yes':'No'}}</td>
-            <td>{{apartment.created}}</td>
+            <td>{{ apartment.number }}</td>
+            <td>{{ apartment.is_vacant?'Yes':'No' }}</td>
+            <td>{{ apartment.created }}</td>
             <td>
-                <a [routerLink]="['/buildings', apartment.building.id]">{{apartment.building.name}}</a>
+                <a [routerLink]="['/buildings', apartment.building.id]">{{ apartment.building.name }}</a>
             </td>
             <td>
                 <a class="btn btn-sm btn-success" [routerLink]="['/apartments', apartment.id, 'tenants']">View Tenants</a>

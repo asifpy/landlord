@@ -21,12 +21,12 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
 })
 export class CoreModule {
 
-	// // this will guarantee that only one instance of the building/apartment is added to the root module.
-	// // When the CoreModule is loaded (even lazy loaded), no new instance of that service is going to
-	// // be added to the child injector.
-	// static forRoot(): ModuleWithProviders {
-	// 	return {
-	// 		ngModule: CoreModule,
+  // // this will guarantee that only one instance of the building/apartment is added to the root module.
+  // // When the CoreModule is loaded (even lazy loaded), no new instance of that service is going to
+  // // be added to the child injector.
+  // static forRoot(): ModuleWithProviders {
+  //  return {
+  //    ngModule: CoreModule,
  //      providers: [BuildingService, ApartmentService]
  //    }
  //  }

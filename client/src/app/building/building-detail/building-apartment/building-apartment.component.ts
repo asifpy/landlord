@@ -26,39 +26,38 @@ export class BuildingApartmentComponent implements OnInit {
     private apartmentService: ApartmentService) { }
 
   ngOnInit() {
-    this.getBuilding()
+    this.getBuilding();
   }
 
   // get building instance, which further will have apartments
-  getBuilding(){
-    let id = +this.route.parent.snapshot.params.id;
+  getBuilding() {
+    const id = +this.route.parent.snapshot.params.id;
     this.buildingService.getBuilding(id).subscribe(
-      response => this.building = response)
+      response => this.building = response);
   }
 
   // create new apartment
   createApartment() {
-    let postData = this.apartmentForm.value
-    postData['building_id'] = this.building.id
+    const postData = this.apartmentForm.value;
+    postData['building_id'] = this.building.id;
 
     this.apartmentService.createApartment(
       postData).subscribe(
       (apartment: IApartment) => {
-        if(apartment) {
-          
+        if (apartment) {
           // get building instance, which further will have latest apartments
-          this.getBuilding()
-          this.apartmentForm.reset()
+          this.getBuilding();
+          this.apartmentForm.reset();
         }
       }
-    )
+    );
   }
 
   // handel form submission
   saveApartment() {
-    if(this.apartmentForm.valid) {
-      //create apartment instance
-      this.createApartment()
+    if (this.apartmentForm.valid) {
+      // create apartment instance
+      this.createApartment();
     }
   }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { TenantRoutes } from './tenant.routes';
 import { TenantListComponent } from './tenant-list/tenant-list.component';
@@ -9,7 +9,7 @@ import { TenantCreateUpdateComponent } from './tenant-create-update/tenant-creat
 
 @NgModule({
   imports: [
-  	RouterModule.forChild(TenantRoutes),
+    RouterModule.forChild(TenantRoutes),
     CommonModule,
     ReactiveFormsModule
   ],

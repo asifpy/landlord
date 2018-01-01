@@ -22,13 +22,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let tenant of tenants;">
-            <td>{{tenant.name}}</td>
-            <td>{{tenant.email}}</td>
-            <td>{{tenant.mobile}}</td>
-            <td>{{tenant.is_active?'Yes':'No'}}</td>
-            <td>{{tenant.apartment.number}}</td>
+            <td>{{ tenant.name }}</td>
+            <td>{{ tenant.email }}</td>
+            <td>{{ tenant.mobile }}</td>
+            <td>{{ tenant.is_active?'Yes':'No' }}</td>
+            <td>{{ tenant.apartment.number }}</td>
             <td>
-                <a [routerLink]="['/buildings', tenant.building.id]">{{tenant.building.name}}</a>
+                <a [routerLink]="['/buildings', tenant.building.id]">{{ tenant.building.name }}</a>
             </td>
             <td>
                 <a class="btn btn-sm btn-success" [routerLink]="['/tenants', tenant.id, 'update']">Update</a>

@@ -7,15 +7,15 @@ import { BuildingOverviewComponent } from './building-detail/building-overview/b
 import { BuildingCreateUpdateComponent } from './building-create-update/building-create-update.component';
 
 export const BuildingAppRoutes: Routes = [
-	{ path: '', component: BuildingComponent },
-	{ path: 'create', component: BuildingCreateUpdateComponent },
+  { path: '', component: BuildingComponent },
+  { path: 'create', component: BuildingCreateUpdateComponent },
 
-	{ path: ':id', component: BuildingDetailComponent,
-		children: [
-			{ path: '', redirectTo: 'overview', pathMatch: 'full' },
-			{ path: 'overview', component: BuildingOverviewComponent },
-			{ path: 'apartments', component: BuildingApartmentComponent }
-		]
-	},
-	{ path: ':id/update', component: BuildingCreateUpdateComponent}
+  { path: ':id', component: BuildingDetailComponent,
+    children: [
+      { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      { path: 'overview', component: BuildingOverviewComponent },
+      { path: 'apartments', component: BuildingApartmentComponent }
+    ]
+  },
+  { path: ':id/update', component: BuildingCreateUpdateComponent}
 ];

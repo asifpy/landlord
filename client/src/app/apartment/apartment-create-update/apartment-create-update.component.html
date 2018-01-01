@@ -1,4 +1,4 @@
-<h3>{{title}}</h3>
+<h3>{{ title }}</h3>
 <hr/>
 <form novalidate (ngSubmit)="saveApartment()" [formGroup]="apartmentForm">
 
@@ -16,7 +16,7 @@
 	    	<select class="form-control" formControlName="building_id">
 	    		<option value="">Select a building</option>
 	    		<option *ngFor="let building of buildings"
-			        [value]="building.id">{{building.name}}
+			        [value]="building.id">{{ building.name }}
 			    </option>
 			</select>
 	  	</div>

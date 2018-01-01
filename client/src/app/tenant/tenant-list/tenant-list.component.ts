@@ -5,20 +5,20 @@ import { TenantService } from '../../core/services/tenant.service';
 import { ITenant } from '../../shared/interfaces';
 
 @Component({
-  selector: 'tenant-list',
+  selector: 'app-tenant-list',
   templateUrl: './tenant-list.component.html',
   styleUrls: ['./tenant-list.component.css']
 })
 export class TenantListComponent implements OnInit {
 
-	tenants:ITenant[];
+  tenants: ITenant[];
 
-  constructor(private tenantService:TenantService) { }
+  constructor(private tenantService: TenantService) { }
 
   ngOnInit() {
-  	this.tenantService.getTenants().subscribe(
-  		response => this.tenants = response 
-  	)
+    this.tenantService.getTenants().subscribe(
+      response => this.tenants = response
+      );
   }
 
 }
