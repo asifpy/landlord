@@ -1,0 +1,68 @@
+<h3>{{title}}</h3>
+<hr/>
+<form novalidate (ngSubmit)="saveTenant()" [formGroup]="tenantForm">
+
+	<div class="form-group row">
+		<label class="col-2 col-form-label">Name</label>
+		<div class="col-6">
+	    	<input type="text" class="form-control" formControlName="name">
+	  	</div>
+	  	<div class="alert alert-danger" [hidden]="tenantForm.controls.name.pristine || tenantForm.controls.name.valid">Tenant name is required</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-2 col-form-label">Email</label>
+		<div class="col-6">
+	    	<input type="text" class="form-control" formControlName="email">
+	  	</div>
+	  	<div class="alert alert-danger" [hidden]="tenantForm.controls.email.pristine || tenantForm.controls.email.valid">Tenant email is required</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-2 col-form-label">Mobile</label>
+		<div class="col-6">
+	    	<input type="text" class="form-control" formControlName="mobile">
+	  	</div>
+	  	<div class="alert alert-danger" [hidden]="tenantForm.controls.mobile.pristine || tenantForm.controls.mobile.valid">Tenant mobile is required</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-2 col-form-label">Building</label>
+		<div class="col-6">
+	    	<select class="form-control" formControlName="building_id" (change)="onSelect($event.target.value)">
+	    		<option value="">Select a building</option>
+	    		<option *ngFor="let building of buildings"
+			        [value]="building.id">{{building.name}}
+			    </option>
+			</select>
+	  	</div>
+	  	
+	  	<div class="alert alert-danger" [hidden]="tenantForm.controls.building_id.pristine || tenantForm.controls.building_id.valid">Building is required</div>
+	</div>
+
+	<div class="form-group row" *ngIf="showApartment">
+		<label class="col-2 col-form-label">Apartment</label>
+		<div class="col-6">
+	    	<select class="form-control" formControlName="apartment_id">
+	    		
+	    		<div *ngIf="tenant;then selectedApartmentChoice else nonSelectedChoice">here is ignored</div>
+
+				<ng-template #selectedApartmentChoice>
+					<option [value]="tenant.apartment.id">{{tenant.apartment.number}}</option>
+				</ng-template>
+				
+				<ng-template #nonSelectedChoice>
+					<option value="">Select a Apartment</option>
+				</ng-template>
+
+	    		<option *ngFor="let apartment of filteredApartments"
+			        [value]="apartment.id">{{apartment.number}}
+			    </option>
+			</select>
+	  	</div>
+	  	
+	  	<div class="alert alert-danger" [hidden]="tenantForm.controls.apartment_id.pristine || tenantForm.controls.apartment_id.valid">Building is required</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary" [disabled]="tenantForm.invalid">SAVE</button>
+</form>

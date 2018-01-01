@@ -21,4 +21,5 @@ export interface ITenant {
 	mobile: string;
 	isActive: boolean;
 	apartment: IApartment;
+    building: IBuilding;
 }

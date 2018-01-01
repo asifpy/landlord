@@ -51,7 +51,7 @@ export class ApartmentCreateUpdateComponent implements OnInit {
   	}
   }
 
-  // pre-populate form with building instance
+  // pre-populate form with apartment instance
   prepopulateApartmentForm(apartment: IApartment) {
   	this.apartmentForm.get('number').setValue(apartment.number)
   	this.apartmentForm.get('building_id').setValue(apartment.building.id)
