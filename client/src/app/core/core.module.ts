@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BuildingService } from './services/building.service';
 import { ApartmentService } from './services/apartment.service';
 import { TenantService } from './services/tenant.service';
+import { HandleErrorService } from './services/errorlog.service';
 import { FormFieldErrorComponent } from './form-field-error/form-field-error.component';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
   providers: [
     BuildingService,
     ApartmentService,
-    TenantService
+    TenantService,
+    HandleErrorService
   ]
 })
 export class CoreModule {

@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 
 import { environment } from '../../../environments/environment';
 import { IApartment } from '../../shared/interfaces';
+import { HandleErrorService } from './errorlog.service';
 
 
 @Injectable()
@@ -14,43 +15,28 @@ export class ApartmentService {
 
   private apartmentBaseUrl = `${environment.apiUrl}api/v1/apartments/`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorService: HandleErrorService) { }
 
   getApartments(): Observable<IApartment[]> {
     return this.http.get<IApartment[]>(this.apartmentBaseUrl)
-      .catch(this.handleError);
+      .catch(this.errorService.handleError);
   }
 
   getApartment(id: number): Observable<IApartment> {
     const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
     return this.http.get<IApartment>(apartmentUrl)
-      .catch(this.handleError);
+      .catch(this.errorService.handleError);
 
   }
 
   createApartment(apartment: IApartment): Observable<IApartment> {
     return this.http.post<IApartment>(this.apartmentBaseUrl, apartment)
-      .catch(this.handleError);
+      .catch(this.errorService.handleError);
   }
 
   updateApartment(id: number, apartment: IApartment): Observable<IApartment> {
     const apartmentUrl = `${this.apartmentBaseUrl}${id}/`;
     return this.http.put<IApartment>(apartmentUrl, apartment)
-      .catch(this.handleError);
+      .catch(this.errorService.handleError);
   }
-
-  private handleError(error: HttpErrorResponse) {
-
-    if (error.error instanceof Error) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.log('An error occurred:', error.error.message);
-      const errMessage = error.error.message;
-      return Observable.throw(errMessage);
-    }
-
-    // The backend returned an unsuccessful response code.
-    console.log(`Backend returned code ${error.status}, body was: ${error.error}`);
-    return Observable.throw(error || 'Backend server error');
-  }
-
 }
