@@ -1,12 +1,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { BuildingService } from './services/building.service';
 import { ApartmentService } from './services/apartment.service';
 import { TenantService } from './services/tenant.service';
 import { HandleErrorService } from './services/errorlog.service';
+import { AuthService } from './services/auth.service';
 import { FormFieldErrorComponent } from './form-field-error/form-field-error.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   imports: [RouterModule],
@@ -18,7 +21,13 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
     BuildingService,
     ApartmentService,
     TenantService,
-    HandleErrorService
+    AuthService,
+    HandleErrorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule {

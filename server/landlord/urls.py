@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,4 +32,5 @@ urlpatterns += [
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
     url(r'^refresh_token/', refresh_jwt_token),
+    url(r'^get_token/', obtain_jwt_token),
 ]

@@ -19,12 +19,6 @@
                 </a>
             </div>
 
-            <!-- <div class="col-md-3">
-                <a (click)="changeDisplayView(displayViewEnum.Map)" [class.active]="displayView === displayViewEnum.Map">
-                    <span class="glyphicon glyphicon-map-marker"></span> Map View
-                </a>
-            </div> -->
-
             <div class="col-md-3">
                 <a [routerLink]="['create']"><span class="glyphicon glyphicon-plus"></span> New Building</a>
             </div>
@@ -39,21 +33,5 @@
         <app-building-list 
           [buildings]="buildings" 
           [hidden]="displayView !== displayViewEnum.Grid"></app-building-list>
-
-        <!-- <cm-map *ngIf="filteredCustomers.length" 
-            [zoom]="2" 
-            [enabled]="displayMode === displayViewEnum.Map" 
-            [hidden]="displayMode !== displayViewEnum.Map">
-          <cm-map-point 
-            *ngFor="let customer of filteredCustomers" 
-            [latitude]="customer.latitude" 
-            [longitude]="customer.longitude"
-            [markerText]="'<h3>' + customer.firstName + ' ' + customer.lastName + '</a></h3>' + customer.city + ', ' + customer.state.name"></cm-map-point>
-        </cm-map>
-
-        <cm-pagination
-            [totalItems]="totalRecords" 
-            [pageSize]="pageSize" 
-            (pageChanged)="pageChanged($event)"></cm-pagination> -->
           
 

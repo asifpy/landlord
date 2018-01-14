@@ -16,21 +16,21 @@ class BuildingViewSet(viewsets.ModelViewSet):
     A simple ViewSet for viewing and editing building details.
     """
     serializer_class = BuildingSerializer
-    queryset = Building.objects.all()
-    # permission_classes = (IsAuthenticated, IsLandlordPermission)
+    # queryset = Building.objects.all()
+    permission_classes = (IsAuthenticated, IsLandlordPermission)
 
-    # def get_queryset(self):
-    #     """Returns all the buildings for logged in landlord"""
+    def get_queryset(self):
+        """Returns all the buildings for logged in landlord"""
 
-    #     user = self.request.user
-    #     profile = get_object_or_404(UserProfile, user=user)
-    #     landlord = profile.landlord
-    #     return landlord.buildings.all()
+        user = self.request.user
+        profile = get_object_or_404(UserProfile, user=user)
+        landlord = profile.landlord
+        return landlord.buildings.all()
 
     def retrieve(self, request, pk=None):
         """Override detial route to attach related apartments"""
 
-        building = get_object_or_404(self.queryset, pk=pk)
+        building = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = BuildingSerializer(
             building,
             context={'enable_apartments': True}
@@ -39,9 +39,9 @@ class BuildingViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         """Create new building with landlord"""
-        # serializer.save(owner=self.request.user.profile.landlord)
-        landlord = Landlord.objects.get(name="SA")
-        serializer.save(owner=landlord)
+        serializer.save(owner=self.request.user.profile.landlord)
+        # landlord = Landlord.objects.get(name="SA")
+        # serializer.save(owner=landlord)
 
     def get_serializer_context(self):
         return {

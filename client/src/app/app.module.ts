@@ -14,6 +14,7 @@ import { AppRoutes } from './app.routes';
 
 /* modules */
 import { CoreModule } from './core/core.module';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CoreModule } from './core/core.module';
 
     NgbModule.forRoot(),
 
-    CoreModule
+    CoreModule,
+    LoginModule
   ],
   exports : [],
   providers: [],
