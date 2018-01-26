@@ -11,12 +11,12 @@ name = "pypi"
 
 [packages]
 
-django = "*"
 djangorestframework = "*"
 django-rest-auth = "*"
 djangorestframework-jwt = "*"
 django-allauth = "*"
 django-cors-headers = "*"
+django = "==1.11"
 
 
 [requires]
