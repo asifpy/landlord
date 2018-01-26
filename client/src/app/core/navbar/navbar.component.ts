@@ -18,18 +18,18 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
       if (this.authservice.isLoggedIn) {
-        this.loginLogoutText = "Logout"
+        this.loginLogoutText = 'Logout';
       }
     }
 
     loginOrOut() {
         const isAuthenticated = this.authservice.isLoggedIn();
         if (isAuthenticated) {
-            this.authservice.logout()
-            this.setLoginLogoutText()
-            this.redirectToLogin()
+            this.authservice.logout();
+            this.setLoginLogoutText();
+            this.redirectToLogin();
         }
-        this.redirectToLogin()
+        this.redirectToLogin();
     }
 
     redirectToLogin() {

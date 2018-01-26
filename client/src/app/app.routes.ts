@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { AuthGuardService } from './core/services/auth-gaurd.service'
+import { AuthGuardService } from './core/services/auth-gaurd.service';
 
 export const AppRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/buildings' },

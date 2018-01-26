@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { 
+import {
   Router,
   CanActivate,
   CanLoad,
@@ -15,11 +15,11 @@ export class AuthGuardService implements CanActivate, CanLoad {
   constructor(public authService: AuthService, public router: Router) {}
 
   canActivate() {
-    return this.checkLogin()
+    return this.checkLogin();
   }
 
   canLoad() {
-  	return this.checkLogin()
+    return this.checkLogin();
   }
 
   checkLogin() {

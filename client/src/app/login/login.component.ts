@@ -15,11 +15,11 @@ export class LoginComponent implements OnInit {
     errorMessage: string;
 
     constructor(
-        private formBuilder: FormBuilder, 
-        private router: Router, 
+        private formBuilder: FormBuilder,
+        private router: Router,
         private authService: AuthService) { }
 
-    ngOnInit() { 
+    ngOnInit() {
         this.buildForm();
     }
 
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
                     this.errorMessage = loginError;
                 }
 
-            })
+            });
 
     }
 }
