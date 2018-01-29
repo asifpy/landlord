@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApartmentService } from '../../core/services/apartment.service';
+import { TrackByService } from '../../core/services/trackby.service';
 import { IApartment } from '../../shared/interfaces';
 
 @Component({
@@ -12,7 +13,10 @@ export class ApartmentListComponent implements OnInit {
   title: string;
   apartments: IApartment[] = [];
 
-  constructor(private apartmentService: ApartmentService) { }
+  constructor(
+    private apartmentService: ApartmentService,
+    private trackByService: TrackByService
+  ) { }
 
   ngOnInit() {
     this.title = 'Apartments';

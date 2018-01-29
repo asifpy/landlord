@@ -9,6 +9,7 @@ import { TenantService } from './services/tenant.service';
 import { HandleErrorService } from './services/errorlog.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-gaurd.service';
+import { TrackByService } from './services/trackby.service';
 import { FormFieldErrorComponent } from './form-field-error/form-field-error.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -24,6 +25,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     TenantService,
     AuthService,
     AuthGuardService,
+    TrackByService,
     HandleErrorService,
     {
       provide: HTTP_INTERCEPTORS,

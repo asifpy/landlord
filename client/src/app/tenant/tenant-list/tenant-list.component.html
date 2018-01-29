@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let tenant of tenants;">
+        <tr *ngFor="let tenant of tenants;trackBy:trackByService.tenant">
             <td>{{ tenant.name }}</td>
             <td>{{ tenant.email }}</td>
             <td>{{ tenant.mobile }}</td>

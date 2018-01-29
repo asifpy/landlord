@@ -6,7 +6,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let building of buildings;">
+        <tr *ngFor="let building of buildings;trackBy:trackByService.building">
             <td>
                 <a [routerLink]="['/buildings', building.id, 'overview']">{{ building.name }}</a>
             </td>

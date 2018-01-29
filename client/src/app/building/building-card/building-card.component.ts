@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 import { IBuilding } from '../../shared/interfaces';
+import { TrackByService } from '../../core/services/trackby.service';
 
 @Component({
   selector: 'app-building-card',
@@ -10,7 +11,7 @@ import { IBuilding } from '../../shared/interfaces';
 })
 export class BuildingCardComponent {
 
-  constructor() { }
+  constructor(private trackByService: TrackByService) { }
 
   @Input() buildings: IBuilding[] = [];
 }

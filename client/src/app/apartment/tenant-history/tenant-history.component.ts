@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApartmentService } from '../../core/services/apartment.service';
+import { TrackByService } from '../../core/services/trackby.service';
 import { IApartment } from '../../shared/interfaces';
 
 @Component({
@@ -15,7 +16,8 @@ export class TenantHistoryComponent implements OnInit {
 
   constructor(
     private apartmentService: ApartmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private trackByService: TrackByService
     ) { }
 
   ngOnInit() {

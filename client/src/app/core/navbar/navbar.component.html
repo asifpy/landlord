@@ -10,8 +10,11 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/tenants" routerLinkActive="active">Tenants</a>
     </li>
-    <li class="nav-item float-right" (click)="loginOrOut()">
-      <a routerLinkActive="active">{{ loginLogoutText }}</a>
+  </ul>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item" (click)="loginOrOut()">
+      <p routerLinkActive="active" class="navbar-text">{{ loginLogoutText }}</p>
     </li>
   </ul>
 </nav>

@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let apartment of apartments;">
+        <tr *ngFor="let apartment of apartments;trackBy:trackByService.apartment">
             <td>{{ apartment.number }}</td>
             <td>{{ apartment.is_vacant?'Yes':'No' }}</td>
             <td>{{ apartment.created }}</td>

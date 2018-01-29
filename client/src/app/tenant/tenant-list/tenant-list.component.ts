@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { TenantService } from '../../core/services/tenant.service';
+import { TrackByService } from '../../core/services/trackby.service';
 import { ITenant } from '../../shared/interfaces';
 
 @Component({
@@ -13,7 +14,10 @@ export class TenantListComponent implements OnInit {
 
   tenants: ITenant[];
 
-  constructor(private tenantService: TenantService) { }
+  constructor(
+    private tenantService: TenantService,
+    private trackByService: TrackByService
+  ) { }
 
   ngOnInit() {
     this.tenantService.getTenants().subscribe(
