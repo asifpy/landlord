@@ -20,11 +20,10 @@ from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/v1/', include('api.v1.urls')),
-    # url(
-    #     r'^api-auth/',
-    #     include('rest_framework.urls', namespace='rest_framework')
-    # )
+
+    # namespace versioning
+    url(r'^api/v1/', include('api.urls', namespace='v1')),
+    # url(r'^api/v2/', include('api.urls', namespace='v2'))
 ]
 
 

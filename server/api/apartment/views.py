@@ -8,8 +8,8 @@ from rest_framework.decorators import list_route
 from rest_framework.permissions import IsAuthenticated
 
 from core.models import Apartment, UserProfile, Tenant
-from api.v1.building.permissions import IsLandlordPermission
-from api.v1.tenant.serializers import TenantSerializer
+from api.building.permissions import IsLandlordPermission
+from api.tenant.serializers import TenantSerializer
 from .serializers import ApartmentSerializer
 
 

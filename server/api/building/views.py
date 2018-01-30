@@ -5,8 +5,8 @@ from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import UserProfile, Building, Apartment, Landlord
-from api.v1.apartment.serializers import ApartmentSerializer
+from core.models import UserProfile, Building, Apartment
+from api.apartment.serializers import ApartmentSerializer
 from .permissions import IsLandlordPermission
 from .serializers import BuildingSerializer
 
