@@ -13,10 +13,26 @@ from .serializers import BuildingSerializer
 
 class BuildingViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing and editing building details.
+        retrieve:
+        Return the building instace for the given building ID.
+
+        list:
+        Return a list of all the existing buildings for the authenticated user.
+
+        create:
+        Create a new building instance.
+
+        delete:
+        Remove an existing building instance.
+
+        partial_update:
+        Update one or more fields on an existing building instance.
+
+        update:
+        Update a building instance.
     """
+
     serializer_class = BuildingSerializer
-    # queryset = Building.objects.all()
     permission_classes = (IsAuthenticated, IsLandlordPermission)
 
     def get_queryset(self):
@@ -28,8 +44,9 @@ class BuildingViewSet(viewsets.ModelViewSet):
         return landlord.buildings.all()
 
     def retrieve(self, request, pk=None):
-        """Override detial route to attach related apartments"""
+        """Return the building instace for the given building ID."""
 
+        # Override detial route to attach related apartments
         building = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = BuildingSerializer(
             building,
@@ -40,8 +57,6 @@ class BuildingViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Create new building with landlord"""
         serializer.save(owner=self.request.user.profile.landlord)
-        # landlord = Landlord.objects.get(name="SA")
-        # serializer.save(owner=landlord)
 
     def get_serializer_context(self):
         return {

@@ -15,7 +15,24 @@ from .serializers import ApartmentSerializer
 
 class ApartmentViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing and editing apartment details.
+        retrieve:
+        Return the apartment instace for the given apartment ID.
+
+        list:
+        Return a list of all the existing apartments for the authenticated
+        user.
+
+        create:
+        Create a new apartment instance.
+
+        delete:
+        Remove an existing apartment instance.
+
+        partial_update:
+        Update one or more fields on an existing apartment instance.
+
+        update:
+        Update a apartment instance.
     """
     serializer_class = ApartmentSerializer
     permission_classes = (IsAuthenticated, IsLandlordPermission)
@@ -28,8 +45,9 @@ class ApartmentViewSet(viewsets.ModelViewSet):
         return Apartment.objects.filter(building__owner=landlord)
 
     def retrieve(self, request, pk=None):
-        """Override detial route to attach related tenants"""
+        """Return the apartment instace for the given apartment ID."""
 
+        # override the detial route to attach related tenants
         apartment = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = ApartmentSerializer(
             apartment,

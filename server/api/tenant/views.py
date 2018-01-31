@@ -12,7 +12,24 @@ from .serializers import TenantSerializer
 
 class TenantViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing and editing tenant details.
+        retrieve:
+        Return the tenant instace for the given tenant ID.
+
+        list:
+        Return a list of all the existing tenants for the authenticated
+        user.
+
+        create:
+        Create a new tenant instance.
+
+        delete:
+        Remove an existing tenant instance.
+
+        partial_update:
+        Update one or more fields on an existing tenant instance.
+
+        update:
+        Update a tenant instance.
     """
     serializer_class = TenantSerializer
     permission_classes = (IsAuthenticated, IsLandlordPermission)

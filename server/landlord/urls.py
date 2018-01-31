@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework.documentation import include_docs_urls
 from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token
 
 urlpatterns = [
@@ -24,6 +25,8 @@ urlpatterns = [
     # namespace versioning
     url(r'^api/v1/', include('api.urls', namespace='v1')),
     # url(r'^api/v2/', include('api.urls', namespace='v2'))
+
+    url(r'^docs/', include_docs_urls(title='Landlord API', public=True))
 ]
 
 

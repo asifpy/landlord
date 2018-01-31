@@ -11,6 +11,7 @@ TODO
 - Abstract the repeated code
 - Refactor error handling code from services
 - Write tests
+- include status codes in API response
 - Configure travis
 - ng-bootstrap to all templates
 - Enable search feature
