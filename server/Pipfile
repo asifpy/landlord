@@ -16,8 +16,11 @@ django-rest-auth = "*"
 djangorestframework-jwt = "*"
 django-allauth = "*"
 django-cors-headers = "*"
-Django = "==1.11"
+django = "==1.11"
 coreapi = "*"
+raven = "*"
+django-environ = "*"
+"psycopg2" = "*"
 
 
 [requires]

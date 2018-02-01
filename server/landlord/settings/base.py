@@ -9,25 +9,27 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import environ
 import os
 import datetime
+import raven
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+ROOT_DIR = environ.Path(__file__) - 4
+APPS_DIR = ROOT_DIR.path('server/landlord')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'r%-umg#!vj0yr&u3ncy$kn901%p=1(*9)yro^23x!a!%)zva86'
+# Load operating system environment variables and then prepare to use them
+env = environ.Env()
+environ.Env.read_env()  # reading .env file
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = env.bool('DJANGO_DEBUG', False)
+SECRET_KEY = env(
+    'DJANGO_SECRET_KEY',
+    default='r%-umg#!vj0yr&u3ncy$kn901%p=1(*9)yro^23x!a!%)zva86'
+)
 
 # Application definition
 
@@ -89,12 +91,12 @@ WSGI_APPLICATION = 'landlord.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+LOCAL_DB = 'postgres://sa:sa@localhost/landlord'
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': env.db('DATABASE_URL', default=LOCAL_DB),
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -141,3 +143,62 @@ SITE_ID = 1
 EMAIL_VERIFICATION = 'optional'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# MOVE LOGGING TO PRODUCTION SETTINGS
+INSTALLED_APPS += ['raven.contrib.django.raven_compat']
+MIDDLEWARE += [
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware'
+]
+
+SENTRY_DSN = env('DJANGO_SENTRY_DSN')
+
+# due to the bug in django-environ, use the regural os.path
+# https://github.com/joke2k/django-environ/pull/107
+RAVEN_CONFIG = {
+    'dsn': SENTRY_DSN,
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
+
+LOGGING_CONFIG = None
+sentry_handler = 'raven.contrib.django.raven_compat.handlers.SentryHandler'
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+        'console': {
+            # exact format is not important, this is the minimum information
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+        # Add Handler for Sentry for `debug` and above
+        'sentry': {
+            'level': 'DEBUG',
+            'class': sentry_handler,
+        },
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        # root logger
+        '': {
+            'level': 'WARNING',
+            'handlers': ['console', 'sentry'],
+        },
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+
+        # 'landlord': {
+        #     'level': 'INFO',
+        #     'handlers': ['console', 'sentry'],
+        #     # required to avoid double logging with root logger
+        #     'propagate': False,
+        # },
+    },
+})

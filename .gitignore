@@ -3,4 +3,5 @@
 __pycache__
 server/landlord/db.sqlite3
 server/landlord/media
+server/landlord/settings/.env
 server/landlord/media/*
