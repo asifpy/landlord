@@ -43,18 +43,6 @@ class Apartment(Auditable):
     building = ForeignKey(Building, related_name='apartments')
     is_vacant = BooleanField(default=True)
 
-    def set_status(self):
-        """Update is_vacant of apartment to
-        - True, if no active tenant occupied the same apartment
-        - False, if active tenant occupied the same apartment
-        """
-
-        active_tenant_exists = self.tenants.filter(is_active=True)
-
-        if self.is_vacant and not active_tenant_exists:
-            self.is_vacant = False
-            self.save()
-
     def set_as_occupied(self):
         """Set apartment as occupied"""
         self.is_vacant = False

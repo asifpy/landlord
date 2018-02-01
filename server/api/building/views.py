@@ -63,35 +63,3 @@ class BuildingViewSet(viewsets.ModelViewSet):
             'enable_nested_apartments': True,
             'request': self.request
         }
-
-
-# TODO: these endpoints are not required
-class BuildingApartmentViewSet(viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing apartment details.
-    """
-    serializer_class = ApartmentSerializer
-    # permission_classes = (IsAuthenticated, IsLandlordPermission)
-
-    @property
-    def get_building(self):
-        """Return building instance"""
-        return Building.objects.get(pk=self.kwargs.get('building_pk'))
-
-    def get_queryset(self):
-        """Returns all the apartments for the given building"""
-
-        building_id = self.kwargs.get('building_pk')
-        apartments = Apartment.objects.filter(building__id=building_id)
-        return apartments
-
-    def perform_create(self, serializer):
-        """Create new aprtment for the given building"""
-        serializer.save(building=self.get_building)
-
-    @detail_route(methods=['post'])
-    def set_status(self, request, pk=None, building_pk=None):
-        """Sets apartment as vacant"""
-        apartment = self.get_object()
-        apartment.set_status()
-        return Response({'status': 'Apartment status updated'})

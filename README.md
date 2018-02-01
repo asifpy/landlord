@@ -15,4 +15,7 @@ TODO
 - Configure travis
 - ng-bootstrap to all templates
 - Enable search feature
+- Fix logout action
+- Tenants/active/in-active filters
+- Apartments/vacant/occupied filters
 - Auto handle apartment status(vacant/occupied) when tenant become inactive

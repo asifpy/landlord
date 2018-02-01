@@ -41,6 +41,14 @@ class TenantViewSet(viewsets.ModelViewSet):
         landlord = profile.landlord
         return Tenant.objects.filter(apartment__building__owner=landlord)
 
+    def perform_create(self, serializer):
+        """Create new tenant ans set apartment as occupied"""
+        tenant = serializer.save()
+
+        # set apartment as occupied
+        apartment = tenant.apartment
+        apartment.set_as_occupied()
+
     @list_route(methods=['get'])
     def active(self, request):
         """Returns all the active tenants"""
@@ -58,6 +66,5 @@ class TenantViewSet(viewsets.ModelViewSet):
         tenant.save()
 
         apartment = tenant.apartment
-        apartment.is_vacant = True
-        apartment.save()
+        apartment.set_as_vacant()
         Response({'detail': "Tenant has been updated as in-active"})
