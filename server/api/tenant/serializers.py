@@ -35,3 +35,13 @@ class TenantSerializer(serializers.ModelSerializer):
     def get_building(self, instance):
         """Attach the related building to the tenant instance"""
         return BaseBuildingSerializer(instance.apartment.building).data
+
+    def validate(self, data):
+        """Checks if the apartment occupied/vacant"""
+        apartment = data['apartment']
+
+        if not apartment.is_vacant:
+            raise serializers.ValidationError(
+                "Selected apartment is already occupied by other tenant"
+            )
+        return data
