@@ -2,6 +2,8 @@
 
 Modern property management tool for landlords, property managers, and renters. It allows landlords to track thier buildings, apartments and tenants information in way much better way.
 
+This is a work-in-progress code branch of landlord.
+
 **Stack**
 * An enterprise class database: [Postgresql](https://www.postgresql.org/)
 * Backend: [Django REST Framework](http://www.django-rest-framework.org/)
@@ -18,9 +20,11 @@ Install [pipenv](http://pipenv.readthedocs.io/en/latest/) globally, then perform
 ```
 git clone https://github.com/asifpy/landlord.git
 cd server
-Install required depedencies: pipenv install
-Run server: manage.py runserver
 ```
+- Create .env file within the settings directory which will hold all required configuration. You can refer [example config](https://github.com/asifpy/landlord/blob/master/server/landlord/settings/env.example)
+- Install required depedencies: pipenv install
+- Run server: manage.py runserver
+
 
 **Frontend**
 
@@ -32,6 +36,4 @@ cd client
 Make sure you have the [Angular CLI](https://github.com/angular/angular-cli#installation) installed globally, then run `npm install` to resolve all dependencies (might take a minute).
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Configure the following variables in ./src/environments/environment.ts
-
-`apiUrl: 'http://<BACKEND_IP>:<PORT>/'`
+Configure the `apiUrl` with your running backend service in ./src/environments/environment.ts
