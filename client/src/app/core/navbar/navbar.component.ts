@@ -1,25 +1,34 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
     isCollapsed: boolean;
     loginLogoutText = 'Login';
+    sub: Subscription;
 
     constructor(
       private router: Router,
       private authservice: AuthService) { }
 
     ngOnInit() {
-      if (this.authservice.isLoggedIn) {
-        this.loginLogoutText = 'Logout';
-      }
+      this.sub = this.authservice.authChanged
+            .subscribe((loggedIn: boolean) => {
+                this.setLoginLogoutText();
+            },
+            (err: any) => console.log(err));
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
     loginOrOut() {

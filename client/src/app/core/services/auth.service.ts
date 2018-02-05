@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
 
   private loginUrl = `${environment.apiUrl}auth/login/`;
+  @Output() authChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +24,7 @@ export class AuthService {
         if (user && user['token']) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', user['token']);
+          this.authChanged.emit(true);
         }
         return user['token'];
       });
@@ -30,6 +32,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.authChanged.emit(false);
   }
 
   public isLoggedIn() {
