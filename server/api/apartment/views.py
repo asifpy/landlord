@@ -1,15 +1,11 @@
 from django.shortcuts import get_object_or_404
-from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework import viewsets
-from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from rest_framework.decorators import list_route
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import Apartment, UserProfile, Tenant
+from core.models import Apartment, UserProfile
 from api.building.permissions import IsLandlordPermission
-from api.tenant.serializers import TenantSerializer
 from .serializers import ApartmentSerializer
 
 
@@ -42,12 +38,14 @@ class ApartmentViewSet(viewsets.ModelViewSet):
         user = self.request.user
         profile = get_object_or_404(UserProfile, user=user)
         landlord = profile.landlord
-        return Apartment.objects.filter(building__owner=landlord)
+        return Apartment.objects.filter(
+            building__owner=landlord
+        ).select_related('building')
 
     def retrieve(self, request, pk=None):
         """Return the apartment instace for the given apartment ID."""
 
-        # override the detial route to attach related tenants
+        # override the detail route to attach related tenants
         apartment = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = ApartmentSerializer(
             apartment,

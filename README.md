@@ -1,10 +1,11 @@
 # LANDLORD #
 
-Modern property management tool for landlords, property managers, and renters. It allows landlords to track thier buildings, apartments and tenants information in way much better way.
+Modern property management tool for landlords, property managers, and renters. It allows landlords to track thier buildings, apartments and tenants information in much better way.
 
-This is a work-in-progress code branch of landlord.
+This is still a work-in-progress code branch of landlord.
 
 **Stack**
+
 * An enterprise class database: [Postgresql](https://www.postgresql.org/)
 * Backend: [Django REST Framework](http://www.django-rest-framework.org/)
 * Awesome [Angular](https://angular.io/guide/quickstart) on the client side
