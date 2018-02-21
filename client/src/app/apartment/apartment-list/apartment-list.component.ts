@@ -15,7 +15,7 @@ export class ApartmentListComponent implements OnInit {
 
   constructor(
     private apartmentService: ApartmentService,
-    private trackByService: TrackByService
+    public trackByService: TrackByService
   ) { }
 
   ngOnInit() {

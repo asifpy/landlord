@@ -16,7 +16,7 @@ export class TenantListComponent implements OnInit {
 
   constructor(
     private tenantService: TenantService,
-    private trackByService: TrackByService
+    public trackByService: TrackByService
   ) { }
 
   ngOnInit() {

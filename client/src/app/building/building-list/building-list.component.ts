@@ -11,7 +11,7 @@ import { TrackByService } from '../../core/services/trackby.service';
 })
 export class BuildingListComponent {
 
-  constructor(private trackByService: TrackByService) { }
+  constructor(public trackByService: TrackByService) { }
 
   @Input() buildings: IBuilding[] = [];
 
