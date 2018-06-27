@@ -14,7 +14,7 @@ import { HandleErrorService } from './errorlog.service';
 @Injectable()
 export class BuildingService {
 
-  private buildingBaseUrl = `${environment.apiUrl}api/v1/buildings/`;
+  private buildingBaseUrl = `${environment.apiUrl}api/buildings/`;
 
   constructor(private http: HttpClient, private errorService: HandleErrorService) { }
 

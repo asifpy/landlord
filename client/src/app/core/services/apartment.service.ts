@@ -13,7 +13,7 @@ import { HandleErrorService } from './errorlog.service';
 @Injectable()
 export class ApartmentService {
 
-  private apartmentBaseUrl = `${environment.apiUrl}api/v1/apartments/`;
+  private apartmentBaseUrl = `${environment.apiUrl}api/apartments/`;
 
   constructor(private http: HttpClient, private errorService: HandleErrorService) { }
 

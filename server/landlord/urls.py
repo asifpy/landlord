@@ -22,10 +22,8 @@ from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    # namespace versioning
-    url(r'^api/v1/', include('api.urls', namespace='v1')),
-    # url(r'^api/v2/', include('api.urls', namespace='v2'))
-
+    # accept header versioning
+    url(r'^api/', include('api.urls')),
     url(r'^docs/', include_docs_urls(title='Landlord API', public=True))
 ]
 
