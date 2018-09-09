@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Landlord REST Services API using Data Types
+version: v1
+protocols: [ HTTPS ] 
+baseUri: http://myapi.mysite.com/api/{version}
+#baseUri: https://mocksvc.qax.mulesoft.com/mocks/e9101b59-5fcc-4bc5-84d0-472a0fe48c8d
+mediaType: application/json
+
+types:
+  Building: !include types/building.raml
+
+/buildings: !include resourceTypes/buildings.raml

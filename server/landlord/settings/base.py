@@ -132,7 +132,8 @@ REST_FRAMEWORK = {
     ),
 
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'EXCEPTION_HANDLER': 'core.utils.custom_exception_handler'
 }
 
 # Enables django-rest-auth to use JWT tokens instead of regular tokens.

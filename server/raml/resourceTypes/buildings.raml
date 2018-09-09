@@ -1,0 +1,20 @@
+get:
+  description: Fetch all the buildings
+  responses: 
+    200: 
+      body: 
+        application/json: 
+          type: Building
+          example: { "id" : 1, "name" : "Building1", "ownerName": "John" }
+post:
+  description: Create new building
+  body:
+      application/json:
+        type: Building
+        example: { "id" : 1, "name" : "Building1", "ownerName": "John" }
+  responses:
+    201:
+      body:
+        application/json:
+          type: Building
+          example: { "id" : 1, "name" : "Building2", "ownerName": "John" }
